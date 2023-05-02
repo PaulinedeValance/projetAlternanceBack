@@ -1,5 +1,6 @@
-const express = require('express')
-const dotenv = require('dotenv')
+import express from "express";
+import dotenv from "dotenv";
+import router from "./router";
 //const router = require('router')
 dotenv.config();
 
@@ -10,21 +11,18 @@ const port = process.env.PORT;
 
 //console.log(process.env.URI_MONGODB)
 
+app.use("/", router); // utilisez votre routeur
 
-//app.use('/', router); // utilisez votre routeur
+app.set("view engine", "ejs");
 
-app.set('view engine', 'ejs');
-
-// Création d'un route 
+// Création d'un route
 app.get("/", (req: any, res: any) => {
   res.send("Hello la famille");
 });
 
-app.get('/ajouter-jeu', (req:any, res:any) => {
-  res.render('formGames');
-});
-
-
+// app.get('/ajouter-jeu', (req:any, res:any) => {
+//   res.render('formGames');
+// });
 
 // Lancement de mon serveur sur le port 5000
 app.listen(port, () => {
