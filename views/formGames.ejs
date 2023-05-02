@@ -1,0 +1,40 @@
+<form method="post" action="/ajouter-jeu">
+    <div>
+      <label for="nom">Nom du jeu :</label>
+      <input type="text" id="nom" name="nom" required>
+    </div>
+    <div>
+      <label for="editeur">Editeur :</label>
+      <input type="text" id="editeur" name="editeur" required>
+    </div>
+    <div>
+      <label for="nbJoueurs">Nombre de joueurs :</label>
+      <input type="number" id="nbJoueurs" name="nbJoueurs" required>
+    </div>
+    <div>
+      <label for="duree">Durée (en minutes) :</label>
+      <input type="number" id="duree" name="duree" required>
+    </div>
+    <div>
+        <label for="coop">Coopératif : </label>
+        <select id="coop" name="coop">
+            <option value="Oui">Oui</option>
+            <option value="Non">Non</option>
+        </select>
+      </div>
+    <div>
+      <label for="categorie">Catégorie :</label>
+      <select id="categorie" name="categorie">
+        <option value="Stratégie">Stratégie</option>
+        <option value="Famille">Famille</option>
+        <option value="Party game">Party game</option>
+        <option value="Enfant">Enfant</option>
+        <option value="Coopératif">Coopératif</option>
+        <option value="Deck building">Deck building</option>
+        <option value="Cartes">Cartes</option>
+        <option value="Aventure">Aventure</option>
+      </select>
+    </div>
+    <button type="submit">Ajouter</button>
+  </form>
+  
