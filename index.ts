@@ -4,7 +4,8 @@ import router from "./router";
 import passport from "./passport";
 import flash from "connect-flash";
 import session from "express-session";
-//const router = require('router')
+import connectDB from "./dataBase";
+
 dotenv.config();
 
 // Création de l'instance d'Express
@@ -22,6 +23,9 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+// Appel de connectDB()
+connectDB();
 
 app.use(flash());
 

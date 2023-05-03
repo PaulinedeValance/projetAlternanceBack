@@ -16,7 +16,7 @@ passport.use(
       if (admin.password === undefined) {
         return done(null, false, { message: "Mot de passe incorrect" });
       }
-      // Comparaison du mot de passe entre celui dans la base de données (hashé) et le mot de passe fourni
+      // Comparaison du mot de passe entré dans la base de données et le mot de passe fourni
       const match = await bcrypt.compare(password, admin.password);
       if (!match) {
         return done(null, false, { message: "Mot de passe incorrect" });
