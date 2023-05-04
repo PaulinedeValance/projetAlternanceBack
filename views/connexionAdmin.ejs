@@ -8,5 +8,9 @@
         <label for="password">Mot de passe :</label>
         <input type="password" id="password" name="password" required>
     </div>
-    <button type="submit">Ajouter</button>
+    <button type="submit">Se connecter</button>
 </form>
+
+<% if (typeof flash !== 'undefined' && flash.failure) { %>
+    <p style="color: red"><%= flash.failure %></p>
+  <% } %>

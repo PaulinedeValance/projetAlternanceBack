@@ -7,4 +7,4 @@ const adminSchema = new mongoose.Schema({
 });
 
 // Exportation du modèle correspondant au schéma
-export const Admin = mongoose.model("adminModel", adminSchema);
+export const Admin = mongoose.model("admin", adminSchema);
