@@ -36,14 +36,6 @@ const connectDB = async () => {
     } else {
       console.log("User already exists in appAdmin collection");
     }
-
-    // await jeuxModel.create({
-    //   nom: "Monopoly",
-    //   description: "Jeu de société de négociation immobilière",
-    //   prix: 25,
-    // });
-
-    // console.log("Données de test insérées avec succès");
   } catch (err) {
     console.error(`Error while connecting to MongoDB: ${err}`);
     process.exit(1);

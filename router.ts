@@ -1,5 +1,6 @@
 import express from "express";
 import passport from "passport";
+import jeuxController from "./controllers/jeuxController";
 const router = express.Router();
 
 // Route qui affiche un formulaire pour ajouter un jeu
@@ -21,5 +22,7 @@ router.post(
     failureFlash: true,
   })
 );
+
+router.post("/ajouter-jeu", jeuxController.ajouterJeu);
 
 export default router;

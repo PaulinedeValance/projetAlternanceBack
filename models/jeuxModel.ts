@@ -6,14 +6,37 @@ const jeuSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    description: {
+    editeur: {
       type: String,
       required: true,
     },
-    prix: {
+    nbJoueurs: {
       type: Number,
       required: true,
     },
+    // dureePartie: {
+    //   type: Number,
+    //   required: true,
+    // },
+    // cooperatif: {
+    //   type: String,
+    //   enum: ["oui", "non"],
+    //   required: true,
+    // },
+    // categorie: {
+    //   type: String,
+    //   enum: [
+    //     "stratégie",
+    //     "famille",
+    //     "partyGame",
+    //     "enfant",
+    //     "coopératif",
+    //     "deck-building",
+    //     "cartes",
+    //     "roll & write",
+    //   ],
+    //   required: true,
+    // },
   },
   { collection: "jeux" }
 );

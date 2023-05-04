@@ -20,7 +20,7 @@ passport.use(
       }
 
       const match = password === user.password;
-      console.log("match:", match);
+      //console.log("match:", match);
       if (!match) {
         return done(null, false, { message: "Mot de passe incorrect" });
       }
