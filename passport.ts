@@ -1,42 +1,6 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import bcrypt from "bcrypt";
 import appAdmin from "./models/appAdminModel";
-
-// passport.use(
-//   new LocalStrategy(async function (username, password, done) {
-//     try {
-//       // Recherche de l'admin dans la bdd
-//       console.log(username, password);
-//       const admin = await Admin.findOne({
-//         username: username,
-//         password: password,
-//       });
-//       console.log(admin);
-//       // Si l'admin n'existe pas, renvoie une erreur
-//       if (!admin) {
-//         return done(null, false, { message: "Nom d'utilisateur incorrect" });
-//       }
-//       // Si le mot de passe n'a pas été défini, renvoie une erreur
-//       if (admin.password === undefined) {
-//         return done(null, false, { message: "Mot de passe incorrect" });
-//       }
-//       // Comparaison du mot de passe entré dans la base de données et le mot de passe fourni
-//       const match = await bcrypt.compare(password, admin.password);
-//       if (!match) {
-//         return done(null, false, { message: "Mot de passe incorrect" });
-//       }
-//       if (admin) {
-//         // Vérifier si admin est défini avant d'appeler done()
-//         return done(null, admin);
-//       }
-
-//       return done(null, admin);
-//     } catch (err) {
-//       return done(err);
-//     }
-//   })
-// );
 
 passport.use(
   new LocalStrategy(async function (username, password, done) {
@@ -51,7 +15,12 @@ passport.use(
         return done(null, false, { message: "Nom d'utilisateur incorrect" });
       }
       // Comparaison du mot de passe entré dans la base de données et le mot de passe fourni
-      const match = await bcrypt.compare(password, user.password);
+      if (password !== user.password) {
+        return done(null, false, { message: "Mot de passe incorrect" });
+      }
+
+      const match = password === user.password;
+      console.log("match:", match);
       if (!match) {
         return done(null, false, { message: "Mot de passe incorrect" });
       }
