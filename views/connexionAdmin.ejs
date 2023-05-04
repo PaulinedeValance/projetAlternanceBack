@@ -1,16 +1,29 @@
-<h1>Hola</h1>
-<form method="post" action="/login">
-    <div>
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" name="username" required>
-    </div>    
-    <div>
-        <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <button type="submit">Se connecter</button>
-</form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page de connexion</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <form method="post" action="/login">
+        <div>
+            <label for="username">Nom d'utilisateur :</label>
+            <input type="text" id="username" name="username" required>
+        </div>    
+        <div>
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Se connecter</button>
+    </form>
 
-<% if (typeof flash !== 'undefined' && flash.failure) { %>
-    <p style="color: red"><%= flash.failure %></p>
-  <% } %>
+    <% if (messages.length > 0) { %>
+        <div class="flash-message">
+          <% for (let i = 0; i < messages.length; i++) { %>
+            <span><%= messages[i] %></span><br>
+          <% } %>
+        </div>
+      <% } %>
+
+  </body>
+</html>

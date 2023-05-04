@@ -5,6 +5,7 @@ import passport from "./passport";
 import flash from "connect-flash";
 import session from "express-session";
 import connectDB from "./dataBase";
+import serveStatic from "serve-static";
 
 dotenv.config();
 
@@ -12,6 +13,9 @@ dotenv.config();
 const app = express();
 // Définition du port d'écoute en utilisant une variable d'environnement
 const port = process.env.PORT;
+
+// Définir le dossier public comme répertoire pour les fichiers statiques
+app.use(serveStatic("public"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
