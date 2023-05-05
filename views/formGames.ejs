@@ -1,17 +1,27 @@
-<form method="post" action="/ajouter-jeu">
-    <div>
-      <label for="nom">Nom du jeu :</label>
-      <input type="text" id="nom" name="nom" required>
-    </div>
-    <div>
-      <label for="editeur">Editeur :</label>
-      <input type="text" id="editeur" name="editeur" required>
-    </div>
-    <div>
-      <label for="nbJoueurs">Nombre de joueurs :</label>
-      <input type="number" id="nbJoueurs" name="nbJoueurs" required>
-    </div>
-    <!-- <div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulaire ajout de jeux</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <form method="post" action="/ajouter-jeu">
+      <div>
+        <label for="nom">Nom du jeu :</label>
+        <input type="text" id="nom" name="nom" required />
+      </div>
+      <div>
+        <label for="editeur">Editeur :</label>
+        <input type="text" id="editeur" name="editeur" required />
+      </div>
+      <div>
+        <label for="nbJoueurs">Nombre de joueurs :</label>
+        <input type="number" id="nbJoueurs" name="nbJoueurs" required />
+      </div>
+      <!-- <div>
       <label for="duree">Durée (en minutes) :</label>
       <input type="number" id="duree" name="duree" required>
     </div>
@@ -35,6 +45,8 @@
         <option value="Roll&Write">Roll & write</option>
       </select>
     </div> -->
-    <button type="submit">Ajouter</button>
-  </form>
-  
+      <button type="submit">Ajouter</button>
+    </form>
+    <li><a href="/jeux" class="button-list">Liste des jeux</a></li>
+  </body>
+</html>

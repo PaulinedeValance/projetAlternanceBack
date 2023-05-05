@@ -1,66 +1,83 @@
 /* Police */
-@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap");
 
 body {
-    font-family: 'Maven Pro', sans-serif;
+  font-family: "Maven Pro", sans-serif;
 }
 
 h1 {
-    color: crimson;
+  color: crimson;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 2rem auto;
-    padding: 2rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    max-width: 500px;
-  }
-  
-  div {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  
-  label {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  input {
-    padding: 0.5rem;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  }
-  
-  button {
-    margin-top: 1rem;
-    padding: 0.7rem;
-    font-size: 1.2rem;
-    background-color: #33659bdf;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #044890;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+}
 
-  .flash-message {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-    color: crimson;
-  }
+div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  font-size: 1.2rem;
+  background-color: #33659bdf;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #044890;
+}
+
+.flash-message {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  color: crimson;
+}
+
+.button-list {
+  background-color: #33659bdf;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.7rem 0.9rem;
+  /* padding: 10px 20px; */
+  border-radius: 5px;
+  text-decoration: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+.button-list:hover {
+  background-color: #044890;
+}
