@@ -4,8 +4,7 @@ import jeuxModel from "./models/jeuxModel";
 import appAdmin from "./models/appAdminModel";
 dotenv.config();
 
-const uri =
-  "mongodb+srv://paulinedev:Qq3MyPFgwmTQZjvX@cluster0.n5lptmq.mongodb.net/ludoprojet?retryWrites=true&w=majority";
+const uri = process.env.URI_MONGODB;
 
 if (!uri) {
   console.error("MongoDB URI is undefined");
