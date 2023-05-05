@@ -2,11 +2,12 @@ import jeu from "../models/jeuxModel";
 import { Request, Response } from "express";
 
 export const ajouterJeu = async (req: Request, res: Response) => {
-  console.log(req.body);
+  //console.log(req.body);
   const nouveauJeu = new jeu({
     nom: req.body.nom,
     editeur: req.body.editeur,
     nbJoueurs: req.body.nbJoueurs,
+    dureePartie: req.body.dureePartie,
     // dureePartie: req.body.dureePartie,
     // cooperatif: req.body.cooperatif,
     // categorie: req.body.categorie,
@@ -25,7 +26,7 @@ export const ajouterJeu = async (req: Request, res: Response) => {
       await nouveauJeu.save();
       console.log("Le jeu a été ajouté !");
       req.flash("success", "Le jeu a été ajouté avec succès !"); // message flashbag
-      res.redirect("/jeux"); // Rediriger l'utilisateur vers la liste des jeux (pas encore créée)
+      res.redirect("/jeux"); // Rediriger l'utilisateur vers la liste des jeux
     }
   } catch (err) {
     console.error(err);

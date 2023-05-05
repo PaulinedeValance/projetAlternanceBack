@@ -21,11 +21,11 @@
         <label for="nbJoueurs">Nombre de joueurs :</label>
         <input type="number" id="nbJoueurs" name="nbJoueurs" required />
       </div>
+      <div>
+        <label for="duree">Durée (en minutes) :</label>
+        <input type="number" id="duree" name="duree" required />
+      </div>
       <!-- <div>
-      <label for="duree">Durée (en minutes) :</label>
-      <input type="number" id="duree" name="duree" required>
-    </div>
-    <div>
         <label for="coop">Coopératif : </label>
         <select id="coop" name="coop">
             <option value="Oui">Oui</option>
@@ -47,6 +47,7 @@
     </div> -->
       <button type="submit">Ajouter</button>
     </form>
-    <li><a href="/jeux" class="button-list">Liste des jeux</a></li>
+    <a href="/jeux" class="button-list">Liste des jeux</a>
+    <a href="/login/admin" class="button-logout">Déconnexion</a>
   </body>
 </html>

@@ -15,6 +15,7 @@ router.get("/login/admin", (req: any, res: any) => {
   res.render("connexionAdmin", { messages });
 });
 
+// Route qui gère l'authentification et différentes redirections
 router.post(
   "/login",
   passport.authenticate("local", {
@@ -24,6 +25,7 @@ router.post(
   })
 );
 
+// Route pour ajouter un jeu dans la BDD
 router.post("/ajouter-jeu", jeuxController.ajouterJeu);
 
 // Route qui affiche la liste des jeux rentrées dans la BDD

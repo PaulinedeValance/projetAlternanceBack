@@ -14,10 +14,10 @@ const jeuSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    // dureePartie: {
-    //   type: Number,
-    //   required: true,
-    // },
+    dureePartie: {
+      type: Number,
+      required: true,
+    },
     // cooperatif: {
     //   type: String,
     //   enum: ["oui", "non"],
