@@ -81,3 +81,24 @@ button:hover {
 .button-list:hover {
   background-color: #044890;
 }
+
+.button-add {
+  background-color: #33659bdf;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.7rem 0.9rem;
+  /* padding: 10px 20px; */
+  border-radius: 5px;
+  text-decoration: none;
+  position: fixed;
+  top: 20px;
+  left: 420px;
+}
+
+.button-add:hover {
+  background-color: #044890;
+}
+
+.liste-jeux {
+  font-size: 1.4rem;
+}
