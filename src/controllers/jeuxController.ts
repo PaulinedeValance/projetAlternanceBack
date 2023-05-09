@@ -9,7 +9,7 @@ export const ajouterJeu = async (req: Request, res: Response) => {
     nbJoueurs: req.body.nbJoueurs,
     dureePartie: req.body.dureePartie,
     cooperatif: req.body.cooperatif,
-    // categorie: req.body.categorie,
+    categorie: req.body.categorie,
   });
 
   try {

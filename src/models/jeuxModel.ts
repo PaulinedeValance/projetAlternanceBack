@@ -24,20 +24,21 @@ const jeuSchema = new mongoose.Schema(
       default: "oui",
       required: true,
     },
-    // categorie: {
-    //   type: String,
-    //   enum: [
-    //     "stratégie",
-    //     "famille",
-    //     "partyGame",
-    //     "enfant",
-    //     "coopératif",
-    //     "deck-building",
-    //     "cartes",
-    //     "roll & write",
-    //   ],
-    //   required: true,
-    // },
+    categorie: {
+      type: String,
+      enum: [
+        "stratégie",
+        "famille",
+        "partyGame",
+        "enfant",
+        "coopératif",
+        "deck-building",
+        "cartes",
+        "roll&write",
+      ],
+      default: "stratégie",
+      required: true,
+    },
   },
   { collection: "jeux" }
 );
