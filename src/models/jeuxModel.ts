@@ -18,11 +18,12 @@ const jeuSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    // cooperatif: {
-    //   type: String,
-    //   enum: ["oui", "non"],
-    //   required: true,
-    // },
+    cooperatif: {
+      type: String,
+      enum: ["oui", "non"],
+      default: "oui",
+      required: true,
+    },
     // categorie: {
     //   type: String,
     //   enum: [

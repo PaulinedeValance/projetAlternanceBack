@@ -8,8 +8,7 @@ export const ajouterJeu = async (req: Request, res: Response) => {
     editeur: req.body.editeur,
     nbJoueurs: req.body.nbJoueurs,
     dureePartie: req.body.dureePartie,
-    // dureePartie: req.body.dureePartie,
-    // cooperatif: req.body.cooperatif,
+    cooperatif: req.body.cooperatif,
     // categorie: req.body.categorie,
   });
 
