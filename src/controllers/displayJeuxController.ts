@@ -1,4 +1,4 @@
-import Jeu from "../models/jeuxModel";
+import Jeu from "../models/gamesModel";
 import { Request, Response } from "express";
 
 // Mon controlleur affiche la liste des jeux rentrés dans ma BDD

@@ -1,4 +1,4 @@
-import jeu from "../models/jeuxModel";
+import jeu from "../models/gamesModel";
 import { Request, Response } from "express";
 
 export const ajouterJeu = async (req: Request, res: Response) => {
@@ -44,5 +44,12 @@ export const supprimerJeu = async (req: Request, res: Response) => {
     console.error("error");
   }
 };
+
+// export const modifierJeu = async (req: Request, res: Response) => {
+//   try {
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
 
 export default { ajouterJeu, supprimerJeu };

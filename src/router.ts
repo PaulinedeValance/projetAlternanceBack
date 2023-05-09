@@ -3,6 +3,7 @@ import passport from "passport";
 import jeuxController from "./controllers/jeuxController";
 import { supprimerJeu } from "./controllers/jeuxController";
 import displayJeuxController from "./controllers/displayJeuxController";
+
 const router = express.Router();
 
 // Route qui affiche le formulaire de connexion des admins
