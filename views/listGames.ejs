@@ -9,14 +9,26 @@
   </head>
   <body>
     <h1>Liste de jeux en BDD</h1>
-    <ul>
-      <% jeux.forEach(jeu => { %>
-      <li class="liste-jeux">
-        <%= jeu.nom %> - <%= jeu.editeur %> - <%= jeu.id %>
-        <a href="/game/delete/<%= jeu._id %>" class="button-delete">x</a>
-      </li>
-      <% }) %>
-    </ul>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Éditeur</th>
+          <th>Catégorie</th>
+          <th>Supprimer</th>
+        </tr>
+        <tbody>
+          <% jeux.forEach(jeu => { %>
+          <tr>
+            <td><%= jeu.nom %></td>
+            <td><%= jeu.editeur %></td>
+            <td><%= jeu.categorie %></td> 
+            <td><a href="/game/delete/<%= jeu._id %>" class="button-delete">x</a></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </thead>
+    </table>
     <a href="/game/add" class="button-add">Ajouter un jeu</a>
   </body>
 </html>
