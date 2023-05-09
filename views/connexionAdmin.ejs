@@ -2,28 +2,32 @@
 <html>
   <head>
     <title>Page de connexion</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <form method="post" action="/login">
+    <div class="form-container">
+      <form method="post" action="/login">
         <div>
-            <label for="username">Nom d'utilisateur :</label>
-            <input type="text" id="username" name="username" required>
-        </div>    
+          <label for="username">Nom d'utilisateur :</label>
+          <input type="text" id="username" name="username" required />
+        </div>
         <div>
-            <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" required>
+          <label for="password">Mot de passe :</label>
+          <input type="password" id="password" name="password" required />
         </div>
         <button type="submit">Se connecter</button>
-    </form>
+        <div>
+          <a href="" class="forgot-pwd">Mot de passe oublié</a>
+        </div>
+      </form>
+    </div>
 
     <% if (messages.length > 0) { %>
-        <div class="flash-message">
-          <% for (let i = 0; i < messages.length; i++) { %>
-            <span><%= messages[i] %></span><br>
-          <% } %>
-        </div>
+    <div class="flash-message">
+      <% for (let i = 0; i < messages.length; i++) { %>
+      <span><%= messages[i] %></span><br />
       <% } %>
-
+    </div>
+    <% } %>
   </body>
 </html>

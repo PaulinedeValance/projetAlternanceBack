@@ -144,6 +144,20 @@ button:hover {
   background-color: #2b333a;
 }
 
+.fomr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.forgot-pwd {
+  text-decoration: none;
+  color: darkblue;
+  font-style: italic;
+  padding-top: 15px;
+  font-size: 15px;
+}
+
 .liste-jeux {
   font-size: 1.4rem;
 }
