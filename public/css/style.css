@@ -99,6 +99,34 @@ button:hover {
   background-color: #044890;
 }
 
+.button-modify {
+  background-color: #33659bdf;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.7rem 0.9rem;
+  /* padding: 10px 20px; */
+  border-radius: 5px;
+  text-decoration: none;
+  position: fixed;
+  top: 20px;
+  left: 230px;
+}
+
+.button-modify:hover {
+  background-color: #044890;
+}
+
+.button-delete {
+  font-size: 22px;
+  color: crimson;
+  text-decoration: none;
+  text-align: center;
+}
+
+.button-delete:hover {
+  color: #044890;
+}
+
 .button-logout {
   background-color: #374350df;
   color: white;

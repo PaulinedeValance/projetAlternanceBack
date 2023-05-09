@@ -32,4 +32,17 @@ export const ajouterJeu = async (req: Request, res: Response) => {
   }
 };
 
-export default { ajouterJeu };
+export const supprimerJeu = async (req: Request, res: Response) => {
+  const jeuId = req.params.jeuId;
+
+  try {
+    await jeu.findByIdAndRemove(jeuId);
+    console.log("Le jeu a été supprimé !");
+    req.flash("success", "Le jeu a été supprimé avec succès !");
+    res.redirect("/jeux");
+  } catch (err) {
+    console.error("error");
+  }
+};
+
+export default { ajouterJeu, supprimerJeu };

@@ -11,7 +11,10 @@
     <h1>Liste de jeux en BDD</h1>
     <ul>
       <% jeux.forEach(jeu => { %>
-      <li class="liste-jeux"><%= jeu.nom %> - <%= jeu.editeur %></li>
+      <li class="liste-jeux">
+        <%= jeu.nom %> - <%= jeu.editeur %> - <%= jeu.id %>
+        <a href="/game/delete/<%= jeu._id %>" class="button-delete">x</a>
+      </li>
       <% }) %>
     </ul>
     <a href="/game/add" class="button-add">Ajouter un jeu</a>
