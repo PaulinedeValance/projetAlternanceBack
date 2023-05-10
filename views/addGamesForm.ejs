@@ -36,7 +36,9 @@
         <label for="categorie">Catégorie :</label>
         <select id="categorie" name="categorie">
           <% categories.forEach(category => { %>
-          <option value="<%= category %>"><%= category %></option>
+          <option value="<%= category.id %><%= category.name %>">
+            <%= category.id %>
+          </option>
           <% }) %>
         </select>
       </div>

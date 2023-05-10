@@ -1,5 +1,16 @@
 import mongoose from "mongoose";
 
+export const categories = [
+  "stratégie",
+  "famille",
+  "party game",
+  "enfant",
+  "coopératif",
+  "deck-building",
+  "cartes",
+  "roll&write",
+];
+
 const gameSchema = new mongoose.Schema(
   {
     nom: {
@@ -26,19 +37,11 @@ const gameSchema = new mongoose.Schema(
     },
     categorie: {
       type: String,
-      enum: [
-        "stratégie",
-        "famille",
-        "partyGame",
-        "enfant",
-        "coopératif",
-        "deck-building",
-        "cartes",
-        "roll&write",
-      ],
-      default: "stratégie",
+      enum: categories,
+      default: categories[0],
       required: true,
     },
+    imageURL: String,
   },
   { collection: "jeux" }
 );

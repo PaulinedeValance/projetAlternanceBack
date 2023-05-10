@@ -23,7 +23,13 @@
             <td><%= jeu.nom %></td>
             <td><%= jeu.editeur %></td>
             <td><%= jeu.categorie %></td> 
-            <td><a href="/game/delete/<%= jeu._id %>" class="button-delete">x</a></td>
+            <td><a href="/api/games/<%= jeu._id %>" class="button-delete">x</a></td>
+          </tr>
+          <tr>
+            <td>
+              <img src="https://ludostockage.s3.eu-west-3.amazonaws.com/Jeu-de-plateau-Terraforming-Mars.jpg" alt="Image du jeu <%= jeu.nom %>">
+            </td>
+
           </tr>
           <% }) %>
         </tbody>

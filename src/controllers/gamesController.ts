@@ -26,7 +26,7 @@ export const addGame = async (req: Request, res: Response) => {
       await newGame.save();
       console.log("Le jeu a été ajouté !");
       req.flash("success", "Le jeu a été ajouté avec succès !"); // message flashbag
-      res.redirect("/jeux"); // Rediriger l'utilisateur vers la liste des jeux
+      res.redirect("/api/games"); // Rediriger l'utilisateur vers la liste des jeux
     }
   } catch (err) {
     console.error(err);
@@ -41,7 +41,7 @@ export const deleteGame = async (req: Request, res: Response) => {
     await game.findByIdAndRemove(idGame);
     console.log("Le jeu a été supprimé !");
     req.flash("success", "Le jeu a été supprimé avec succès !");
-    res.redirect("/jeux");
+    res.redirect("/api/games");
   } catch (err) {
     console.error("error");
   }
