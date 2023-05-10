@@ -1,6 +1,7 @@
 import game from "../models/gamesModel";
 import { Request, Response } from "express";
 
+// Ajout d'un jeu
 export const addGame = async (req: Request, res: Response) => {
   //console.log(req.body);
   const newGame = new game({
@@ -32,6 +33,7 @@ export const addGame = async (req: Request, res: Response) => {
   }
 };
 
+// Suppresion d'un jeu
 export const deleteGame = async (req: Request, res: Response) => {
   const idGame = req.params.idGame;
 

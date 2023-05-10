@@ -1,10 +1,10 @@
-import Jeu from "../models/gamesModel";
+import Game from "../models/gamesModel";
 import { Request, Response } from "express";
 
 // Mon controlleur affiche la liste des jeux rentrés dans ma BDD
-export const afficherListeJeux = (req: Request, res: Response) => {
+export const displayGamesList = (req: Request, res: Response) => {
   // Récupération des jeux
-  Jeu.find()
+  Game.find()
     .then((jeux) => {
       // rendus des jeux par listGames (ma vue)
       res.render("listGames", { jeux: jeux });
@@ -14,4 +14,4 @@ export const afficherListeJeux = (req: Request, res: Response) => {
     });
 };
 
-export default { afficherListeJeux };
+export default { displayGamesList };

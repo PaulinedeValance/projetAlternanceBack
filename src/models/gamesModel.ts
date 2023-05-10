@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const jeuSchema = new mongoose.Schema(
+const gameSchema = new mongoose.Schema(
   {
     nom: {
       type: String,
@@ -43,6 +43,6 @@ const jeuSchema = new mongoose.Schema(
   { collection: "jeux" }
 );
 
-const Jeu = mongoose.model("Jeu", jeuSchema);
+const Game = mongoose.model("Jeu", gameSchema);
 
-export default Jeu;
+export default Game;

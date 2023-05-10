@@ -1,7 +1,6 @@
 import express from "express";
 import passport from "passport";
 import gamesController, { deleteGame } from "./controllers/gamesController";
-//import { deleteGame } from "./controllers/gamesController";
 import displayGamesController from "./controllers/displayGamesController";
 
 const router = express.Router();
@@ -42,6 +41,6 @@ router.post("/ajouter-jeu", gamesController.addGame);
 //router.post("/modifier-jeu", jeuxController.modifierJeu);
 
 // Route qui affiche la liste des jeux rentrées dans la BDD
-router.get("/jeux", displayGamesController.afficherListeJeux);
+router.get("/jeux", displayGamesController.displayGamesList);
 
 export default router;
