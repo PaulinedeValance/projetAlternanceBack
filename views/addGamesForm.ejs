@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <form method="post" action="/ajouter-jeu">
+    <form method="post" action="/api/games">
       <div>
         <label for="nom">Nom du jeu :</label>
         <input type="text" id="nom" name="nom" required />
@@ -35,19 +35,14 @@
       <div>
         <label for="categorie">Catégorie :</label>
         <select id="categorie" name="categorie">
-          <option value="stratégie">Stratégie</option>
-          <option value="famille">Famille</option>
-          <option value="party game">Party game</option>
-          <option value="enfant">Enfant</option>
-          <option value="coopératif">Coopératif</option>
-          <option value="deck building">Deck building</option>
-          <option value="cartes">Cartes</option>
-          <option value="roll&write">Roll & write</option>
+          <% categories.forEach(category => { %>
+          <option value="<%= category %>"><%= category %></option>
+          <% }) %>
         </select>
       </div>
       <button type="submit">Ajouter</button>
     </form>
-    <a href="/jeux" class="button-list">Liste des jeux</a>
+    <a href="/api/games" class="button-list">Liste des jeux</a>
     <!-- <a href="/modifier-jeu" class="button-modify">Modifier un jeu</a> -->
     <a href="/login/admin" class="button-logout">Déconnexion</a>
   </body>
