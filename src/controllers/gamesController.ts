@@ -11,6 +11,7 @@ export const addGame = async (req: Request, res: Response) => {
     dureePartie: req.body.dureePartie,
     cooperatif: req.body.cooperatif,
     categorie: req.body.categorie,
+    imageURL: req.body.imageURL,
   });
 
   try {

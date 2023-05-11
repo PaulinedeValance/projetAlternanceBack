@@ -27,9 +27,10 @@
           </tr>
           <tr>
             <td>
-              <img src="https://ludostockage.s3.eu-west-3.amazonaws.com/Jeu-de-plateau-Terraforming-Mars.jpg" alt="Image du jeu <%= jeu.nom %>">
+              <% if (jeu.imageURL) { %>
+                <img src="<%= jeu.imageURL %>" alt="Image du jeu <%= jeu.nom %>">
+              <% } %>
             </td>
-
           </tr>
           <% }) %>
         </tbody>
