@@ -64,7 +64,8 @@ router.post("/api/upload", upload.single("file"), (req, res) => {
     uploadToS3(file.path, req.file.originalname)
       .then((result) => {
         // Gestion de la réussite de l'upload
-        res.send("Upload réussi !");
+        res.redirect("/game/add"); // Redirection vers le formulaire d'ajout de jeu
+        //res.send("Upload réussi !");
       })
       .catch((error) => {
         // Gestion des erreurs lors de l'upload
