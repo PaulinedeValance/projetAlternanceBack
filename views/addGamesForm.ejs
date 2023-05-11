@@ -44,6 +44,13 @@
       </div>
       <button type="submit">Ajouter</button>
     </form>
+    <form action="/api/upload" enctype="multipart/form-data" method="post">
+      <div>
+        Selectionner une image :
+        <input type="file" name="file" multiple="multiple" />
+      </div>
+      <input type="submit" value="Upload" />
+    </form>
     <a href="/api/games" class="button-list">Liste des jeux</a>
     <!-- <a href="/modifier-jeu" class="button-modify">Modifier un jeu</a> -->
     <a href="/login/admin" class="button-logout">Déconnexion</a>
