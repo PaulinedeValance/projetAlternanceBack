@@ -17,6 +17,12 @@ const port = process.env.PORT;
 // Définir le dossier public comme répertoire pour les fichiers statiques
 app.use(serveStatic("public"));
 
+// app.use(
+//   cors({
+//     origin: "*",
+//   })
+// );
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

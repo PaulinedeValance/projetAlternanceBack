@@ -55,6 +55,7 @@ router.get("/api/games", displayGamesController.displayGamesList);
 
 // Route pour l'upload
 router.post("/api/upload", upload.single("file"), (req, res) => {
+  console.log(req);
   // Vérification si req.file existe et est défini
   if (req.file) {
     // Accéder au fichier téléchargé via req.file
@@ -63,9 +64,10 @@ router.post("/api/upload", upload.single("file"), (req, res) => {
     // Utilisation de la fonction uploadToS3 pour envoyer le fichier vers S3
     uploadToS3(file.path, req.file.originalname)
       .then((result) => {
-        // Gestion de la réussite de l'upload
-        res.redirect("/game/add"); // Redirection vers le formulaire d'ajout de jeu
-        //res.send("Upload réussi !");
+        // Je récupère l'URL du fichier téléchargé depuis le résultat
+        const fileUrl = result.Location;
+        // Envoi un objet Json avec la propriété fileUrl
+        res.json({ fileUrl });
       })
       .catch((error) => {
         // Gestion des erreurs lors de l'upload
