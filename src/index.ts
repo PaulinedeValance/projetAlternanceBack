@@ -6,6 +6,8 @@ import flash from "connect-flash";
 import session from "express-session";
 import connectDB from "./dataBase";
 import serveStatic from "serve-static";
+import apiRouter from "./apiRoutes";
+import methodOverride from "method-override";
 
 dotenv.config();
 
@@ -40,11 +42,13 @@ connectDB();
 app.use(flash());
 
 app.use("/", router); // utilisation du routeur
+app.use("/api", apiRouter);
 
 app.use(passport.initialize()); // initialisation de la librairie Passport.js
 
 app.set("view engine", "ejs");
-
+// Utilisation de method
+app.use(methodOverride("_method"));
 // Création d'un route
 app.get("/", (req: any, res: any) => {
   res.send("Hello la famille");

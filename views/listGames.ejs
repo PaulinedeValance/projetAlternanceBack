@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <title>Liste des jeux</title>
   </head>
   <body>
@@ -12,30 +16,62 @@
     <table class="styled-table">
       <thead>
         <tr>
+          <th>Id</th>
           <th>Nom</th>
           <th>Éditeur</th>
           <th>Catégorie</th>
           <th>Supprimer</th>
+          <th>Modifier</th>
         </tr>
-        <tbody>
-          <% jeux.forEach(jeu => { %>
-          <tr>
-            <td><%= jeu.nom %></td>
-            <td><%= jeu.editeur %></td>
-            <td><%= jeu.categorie %></td> 
-            <td><a href="/api/games/<%= jeu._id %>" class="button-delete">x</a></td>
-          </tr>
-          <tr>
-            <td>
-              <% if (jeu.imageURL) { %>
-                <img src="<%= jeu.imageURL %>" alt="Image du jeu <%= jeu.nom %>">
-              <% } %>
-            </td>
-          </tr>
-          <% }) %>
-        </tbody>
       </thead>
+      <tbody>
+        <% jeux.forEach(jeu => { %>
+        <tr>
+          <td><%= jeu.id %></td>
+          <td><%= jeu.nom %></td>
+          <td><%= jeu.editeur %></td>
+          <td><%= jeu.categorie %></td>
+
+          <td>
+            <button class="delete-btn" data-id="<%= jeu._id %>">
+              Supprimer
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <% if (jeu.imageURL) { %>
+            <img src="<%= jeu.imageURL %>" alt="Image du jeu <%= jeu.nom %>" />
+            <% } %>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
     </table>
     <a href="/game/add" class="button-add">Ajouter un jeu</a>
   </body>
 </html>
+
+<script>
+  const deleteBtns = document.querySelectorAll(".delete-btn");
+  deleteBtns.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      const jeuId = event.target.dataset.id;
+      //console.log("Cliqué sur le bouton de suppression avec l'ID :", jeuId);
+      fetch("/api/games/" + jeuId, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+          } else {
+          }
+        })
+        .catch((error) => {
+          console.log("Erreur :", error);
+        });
+    });
+  });
+</script>

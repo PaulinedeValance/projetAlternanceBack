@@ -19,7 +19,7 @@ const connectDB = async () => {
       //useNewUrlParser: true,
       //useUnifiedTopology: true,
     });
-    console.log(`Cool, la connexion marche !`);
+
     //console.log(mongoose.connection.readyState);
 
     //Ajouter un nouvel utilisateur dans la collection appAdmin

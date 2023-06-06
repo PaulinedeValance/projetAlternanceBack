@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <form method="post" action="/api/games">
+    <form method="post" action="/api/games" class="form-style">
       <div>
         <label for="nom">Nom du jeu :</label>
         <input type="text" id="nom" name="nom" required />
@@ -50,14 +50,13 @@
         Selectionner une image :
         <input type="file" name="file" multiple="multiple" id="file-upload" />
       </div>
-      <button type="submit">Ajouter</button>
+      <button class="button-style" type="submit">Ajouter</button>
     </form>
     <a href="/api/games" class="button-list">Liste des jeux</a>
     <a href="/login/admin" class="button-logout">Déconnexion</a>
     <script>
       let uploadingBtn = document.getElementById("file-upload");
       const handleChange = () => {
-        //console.log(uploadingBtn);
         let form = new FormData();
         form.append("file", uploadingBtn.files[0]);
         fetch("/api/upload", {

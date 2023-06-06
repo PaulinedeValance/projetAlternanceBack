@@ -11,7 +11,7 @@ h1 {
   padding-top: 20px;
 }
 
-form {
+.form-style {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +44,7 @@ input {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-button {
+.button-style {
   margin-top: 1rem;
   padding: 0.7rem;
   font-size: 1.2rem;
@@ -55,7 +55,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.button-style:hover {
   background-color: #044890;
 }
 
@@ -123,10 +123,27 @@ button:hover {
   color: crimson;
   text-decoration: none;
   text-align: center;
+  border: none;
+  background-color: white;
+  cursor: pointer;
 }
 
 .button-delete:hover {
+  color: rgb(166, 53, 76);
+}
+
+.button-edit {
+  font-size: 22px;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  background-color: white;
+  cursor: pointer;
   color: #044890;
+}
+
+.button-edit:hover {
+  color: #33659bdf;
 }
 
 .button-logout {
@@ -146,7 +163,7 @@ button:hover {
   background-color: #2b333a;
 }
 
-.fomr-container {
+.form-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

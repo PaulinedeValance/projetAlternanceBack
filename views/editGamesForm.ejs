@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <form method="post" action="/modifier-jeu">
+    <h1>Modifier un jeu</h1>
+    <!-- <form method="post" action="/api/games/<%= jeu._id %>?_method=PUT" class="form-style"> -->
+    <form method="post" action="/api/games/<%= jeu._id.toString() %>?_method=PUT" class="form-style">
+    <!-- <form method="post" action="/game/edit/edit-game" class="form-style"> -->
       <input type="hidden" name="jeuId" value="<%= jeu._id %>" />
       
       <div>
@@ -47,9 +50,9 @@
           <option value="roll&write" <% if (jeu.categorie === 'roll&write') { %> selected <% } %>>Roll & write</option>
         </select>
     </div>
-    <button type="submit">Ajouter</button>
+    <button class="button-style" type="submit">Modifier</button>
   </form>
-  <a href="/jeux" class="button-list">Liste des jeux</a>
+  <a href="/api/games" class="button-list">Liste des jeux</a>
   <a href="/login/admin" class="button-logout">Déconnexion</a>
 </body>
 </html>  
