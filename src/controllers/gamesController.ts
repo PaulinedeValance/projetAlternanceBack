@@ -37,7 +37,6 @@ export const addGame = async (req: Request, res: Response) => {
 export const deleteGame = async (req: Request, res: Response) => {
   const idGame = req.params.idGame;
   //console.log("ID du jeu à supprimer :", idGame);
-  console.log("there");
 
   try {
     await game.findByIdAndRemove(idGame);

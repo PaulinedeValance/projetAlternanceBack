@@ -17,8 +17,6 @@ apiRouter.delete("/games/:idGame", (req, res) => {
   console.log("apiDelete");
   //console.log("ID du jeu à supprimer :", idGame);
   gamesController.deleteGame(req, res);
-
-  res.render("/api/games");
 });
 
 // Route pour éditer un jeu
