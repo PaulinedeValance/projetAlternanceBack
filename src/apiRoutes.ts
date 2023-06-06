@@ -4,40 +4,19 @@ import Game from "./models/gamesModel";
 import express, { Request, Response, Router } from "express";
 import { uploadToS3 } from "../uploadFile";
 import multer from "multer";
+import passport from "passport";
 
 const apiRouter = express.Router();
 const upload = multer({ dest: "uploads/" });
 
-// Route pour ajouter un jeu dans la BDD
-apiRouter.post("/games", gamesController.addGame);
-
 // Route pour supprimer un jeu
 apiRouter.delete("/games/:idGame", (req, res) => {
   const idGame = req.params.idGame;
-  console.log("apiDelete");
-  //console.log("ID du jeu à supprimer :", idGame);
   gamesController.deleteGame(req, res);
 });
 
-// Route pour éditer un jeu
-// apiRouter.put("/games/:idGame", (req, res) => {
-//   console.log("test");
-//   gamesController.editGame(req, res);
-// });
-
-// apiRouter.post("/games/:idGame", (req, res) => {
-//   console.log("here");
-//   if (req.body._method === "DELETE") {
-//     const idGame = req.params.idGame;
-//     console.log("ID du jeu à supprimer :", idGame);
-//     gamesController.deleteGame(req, res);
-//   } else {
-
-//   }
-// });
-
-// Route qui affiche la liste des jeux rentrés dans la BDD
-apiRouter.get("/games", displayGamesController.displayGamesList);
+// Route pour ajouter un jeu dans la BDD
+apiRouter.post("/games", gamesController.addGame);
 
 // Route qui affiche un formulaire pour MODIFIER un jeu
 apiRouter.get("/game/edit/:idGame", async (req, res) => {
@@ -62,9 +41,17 @@ apiRouter.get("/game/edit/:idGame", async (req, res) => {
 });
 
 // Route pour modifier un jeu dans la BDD
-//router.post("/edit-game", gamesController.editGame);
-//router.post("/edit-game/:idGame", gamesController.editGame);
 apiRouter.post("/game/edit/edit-game", gamesController.editGame);
+
+// Route qui gère l'authentification et différentes redirections
+apiRouter.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/game/add",
+    failureRedirect: "/login/admin",
+    failureFlash: true,
+  })
+);
 
 // Route pour l'upload
 apiRouter.post("/api/upload", upload.single("file"), (req, res) => {

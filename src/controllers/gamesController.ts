@@ -17,16 +17,14 @@ export const addGame = async (req: Request, res: Response) => {
     const existingGame = await game.findOne({ nom: newGame.nom });
 
     if (existingGame) {
-      // Le jeu existe déjà dans la base de données
+      // Si le jeu existe déjà dans la base de données
       console.log("Le jeu existe déjà !");
-      req.flash("error", "Le jeu existe déjà !"); // message flashbag
       res.redirect("/game/add"); // Rediriger vers le formulaire d'ajout de jeu
     } else {
       // Le jeu n'existe pas encore dans la base de données
       await newGame.save();
       console.log("Le jeu a été ajouté !");
-      req.flash("success", "Le jeu a été ajouté avec succès !"); // message flashbag
-      res.redirect("/api/games"); // Rediriger l'utilisateur vers la liste des jeux
+      res.redirect("/games"); // Rediriger l'utilisateur vers la liste des jeux
     }
   } catch (err) {
     console.error(err);
@@ -36,7 +34,6 @@ export const addGame = async (req: Request, res: Response) => {
 // Suppresion d'un jeu
 export const deleteGame = async (req: Request, res: Response) => {
   const idGame = req.params.idGame;
-  //console.log("ID du jeu à supprimer :", idGame);
 
   try {
     await game.findByIdAndRemove(idGame);

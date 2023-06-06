@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import router from "./router";
+import pageRouter from "./pageRouter";
 import passport from "./passport";
 import flash from "connect-flash";
 import session from "express-session";
@@ -41,7 +41,7 @@ connectDB();
 
 app.use(flash());
 
-app.use("/", router); // utilisation du routeur
+app.use("/", pageRouter); // utilisation du routeur
 app.use("/api", apiRouter);
 
 app.use(passport.initialize()); // initialisation de la librairie Passport.js
