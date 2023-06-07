@@ -40,6 +40,9 @@
             <button
               class="button-edit fas fa-edit"
               data-id="<%= jeu._id %>"
+              data-nom="<%= jeu.nom %>"
+              data-editeur="<%= jeu.editeur %>"
+              data-categorie="<%= jeu.categorie %>"
             ></button>
           </td>
         </tr>
@@ -53,6 +56,31 @@
         <% }) %>
       </tbody>
     </table>
+    <dialog id="editGameModal">
+      <form action="/api/game/edit/edit-game" method="POST">
+        <label for="editGameName">Nom du jeu</label>
+        <input type="text" id="editGameName" name="editGameName" required />
+
+        <label for="editGamePublisher">Éditeur du jeu</label>
+        <input
+          type="text"
+          id="editGamePublisher"
+          name="editGamePublisher"
+          required
+        />
+
+        <label for="editGameCategory">Catégorie du jeu</label>
+        <input
+          type="text"
+          id="editGameCategory"
+          name="editGameCategory"
+          required
+        />
+
+        <button type="submit">Enregistrer</button>
+      </form>
+    </dialog>
+
     <a href="/game/add" class="button-add">Ajouter un jeu</a>
   </body>
 </html>
@@ -79,5 +107,41 @@
           console.log("Erreur :", error);
         });
     });
+  });
+
+  const editBtns = document.querySelectorAll(".button-edit");
+  const editModal = document.querySelector("#editGameModal");
+  editBtns.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      const jeuId = event.currentTarget.dataset.id;
+      const jeuNom = event.currentTarget.dataset.nom;
+      const jeuEditeur = event.currentTarget.dataset.editeur;
+      const jeuCategorie = event.currentTarget.dataset.categorie;
+
+      // Ouvrir la modale
+      editModal.showModal();
+
+      const editGameName = document.querySelector("#editGameName");
+      const editGamePublisher = document.querySelector("#editGamePublisher");
+      const editGameCategory = document.querySelector("#editGameCategory");
+
+      editGameName.value = jeuNom;
+      editGamePublisher.value = jeuEditeur;
+      editGameCategory.value = jeuCategorie;
+
+      const editForm = editModal.querySelector("form");
+      editForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        // Ferme la modale
+        editModal.close();
+      });
+    });
+  });
+
+  // Ferme la modale quand je clique en dehors de celle ci
+  window.addEventListener("click", (event) => {
+    if (event.target === editModal) {
+      editModal.close();
+    }
   });
 </script>
