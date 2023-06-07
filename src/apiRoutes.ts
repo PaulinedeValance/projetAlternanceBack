@@ -13,6 +13,7 @@ const upload = multer({ dest: "uploads/" });
 apiRouter.delete("/games/:idGame", (req, res) => {
   const idGame = req.params.idGame;
   gamesController.deleteGame(req, res);
+  res.json();
 });
 
 // Route pour ajouter un jeu dans la BDD

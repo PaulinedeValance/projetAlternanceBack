@@ -16,7 +16,6 @@
     <table class="styled-table">
       <thead>
         <tr>
-          <th>Id</th>
           <th>Nom</th>
           <th>Éditeur</th>
           <th>Catégorie</th>
@@ -27,15 +26,21 @@
       <tbody>
         <% jeux.forEach(jeu => { %>
         <tr>
-          <td><%= jeu.id %></td>
           <td><%= jeu.nom %></td>
           <td><%= jeu.editeur %></td>
           <td><%= jeu.categorie %></td>
 
           <td>
-            <button class="delete-btn" data-id="<%= jeu._id %>">
-              Supprimer
-            </button>
+            <button
+              class="button-delete fa fa-trash"
+              data-id="<%= jeu._id %>"
+            ></button>
+          </td>
+          <td>
+            <button
+              class="button-edit fas fa-edit"
+              data-id="<%= jeu._id %>"
+            ></button>
           </td>
         </tr>
         <tr>
@@ -53,7 +58,7 @@
 </html>
 
 <script>
-  const deleteBtns = document.querySelectorAll(".delete-btn");
+  const deleteBtns = document.querySelectorAll(".button-delete");
   deleteBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
       const jeuId = event.target.dataset.id;
@@ -66,6 +71,7 @@
       })
         .then((response) => {
           if (response.ok) {
+            location.href = "/games";
           } else {
           }
         })
