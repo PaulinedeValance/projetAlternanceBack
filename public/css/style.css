@@ -224,3 +224,63 @@ input {
 .styled-table tbody tr:last-of-type {
   border-bottom: 2px solid #009879;
 }
+
+.modale-style {
+  padding: 25px 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-modale {
+  text-align: center;
+}
+
+#editGameModal {
+  transition: transform 0.5s ease-in-out;
+  transform: translateY(-100%);
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 1px #009879;
+}
+
+hr {
+  width: 125px;
+  color: #313437;
+}
+
+.modal-open #editGameModal {
+  transform: translateY(0);
+}
+
+.button-modale {
+  background-color: #009879;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.button-modale:hover {
+  background-color: #046653;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 27px;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  color: #00000094;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}

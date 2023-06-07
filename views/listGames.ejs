@@ -12,76 +12,94 @@
     <title>Liste des jeux</title>
   </head>
   <body>
-    <h1>Liste de jeux en BDD</h1>
-    <table class="styled-table">
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Éditeur</th>
-          <th>Catégorie</th>
-          <th>Supprimer</th>
-          <th>Modifier</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% jeux.forEach(jeu => { %>
-        <tr>
-          <td><%= jeu.nom %></td>
-          <td><%= jeu.editeur %></td>
-          <td><%= jeu.categorie %></td>
+    <div id="container">
+      <h1>Liste de jeux en BDD</h1>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Éditeur</th>
+            <th>Catégorie</th>
+            <th>Supprimer</th>
+            <th>Modifier</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% jeux.forEach(jeu => { %>
+          <tr>
+            <td><%= jeu.nom %></td>
+            <td><%= jeu.editeur %></td>
+            <td><%= jeu.categorie %></td>
 
-          <td>
-            <button
-              class="button-delete fa fa-trash"
-              data-id="<%= jeu._id %>"
-            ></button>
-          </td>
-          <td>
-            <button
-              class="button-edit fas fa-edit"
-              data-id="<%= jeu._id %>"
-              data-nom="<%= jeu.nom %>"
-              data-editeur="<%= jeu.editeur %>"
-              data-categorie="<%= jeu.categorie %>"
-            ></button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <% if (jeu.imageURL) { %>
-            <img src="<%= jeu.imageURL %>" alt="Image du jeu <%= jeu.nom %>" />
-            <% } %>
-          </td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
-    <dialog id="editGameModal">
-      <form action="/api/game/edit/edit-game" method="POST">
-        <label for="editGameName">Nom du jeu</label>
-        <input type="text" id="editGameName" name="editGameName" required />
+            <td>
+              <button
+                class="button-delete fa fa-trash"
+                data-id="<%= jeu._id %>"
+              ></button>
+            </td>
+            <td>
+              <button
+                class="button-edit fas fa-edit"
+                data-id="<%= jeu._id %>"
+                data-nom="<%= jeu.nom %>"
+                data-editeur="<%= jeu.editeur %>"
+                data-categorie="<%= jeu.categorie %>"
+              ></button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <% if (jeu.imageURL) { %>
+              <img
+                src="<%= jeu.imageURL %>"
+                alt="Image du jeu <%= jeu.nom %>"
+              />
+              <% } %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <dialog id="editGameModal">
+        <h2 class="title-modale">Modifier un jeu</h2>
+        <button class="close-modal">&times;</button>
+        <hr />
+        <form
+          class="modale-style"
+          action="/api/game/edit/edit-game"
+          method="POST"
+        >
+          <div>
+            <label for="editGameName">Nom du jeu</label>
+            <input type="text" id="editGameName" name="editGameName" required />
+          </div>
 
-        <label for="editGamePublisher">Éditeur du jeu</label>
-        <input
-          type="text"
-          id="editGamePublisher"
-          name="editGamePublisher"
-          required
-        />
+          <div>
+            <label for="editGamePublisher">Éditeur du jeu</label>
+            <input
+              type="text"
+              id="editGamePublisher"
+              name="editGamePublisher"
+              required
+            />
+          </div>
 
-        <label for="editGameCategory">Catégorie du jeu</label>
-        <input
-          type="text"
-          id="editGameCategory"
-          name="editGameCategory"
-          required
-        />
+          <div>
+            <label for="editGameCategory">Catégorie du jeu</label>
+            <input
+              type="text"
+              id="editGameCategory"
+              name="editGameCategory"
+              required
+            />
+          </div>
 
-        <button type="submit">Enregistrer</button>
-      </form>
-    </dialog>
+          <button class="button-modale" type="submit">Enregistrer</button>
+        </form>
+      </dialog>
 
-    <a href="/game/add" class="button-add">Ajouter un jeu</a>
+      <a href="/game/add" class="button-add">Ajouter un jeu</a>
+    </div>
   </body>
 </html>
 
@@ -108,9 +126,10 @@
         });
     });
   });
-
+  const container = document.querySelector("#container");
   const editBtns = document.querySelectorAll(".button-edit");
   const editModal = document.querySelector("#editGameModal");
+  const closeModalBtn = document.querySelector(".close-modal");
   editBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
       const jeuId = event.currentTarget.dataset.id;
@@ -120,6 +139,7 @@
 
       // Ouvrir la modale
       editModal.showModal();
+      document.body.classList.add("modal-open");
 
       const editGameName = document.querySelector("#editGameName");
       const editGamePublisher = document.querySelector("#editGamePublisher");
@@ -138,10 +158,16 @@
     });
   });
 
+  closeModalBtn.addEventListener("click", () => {
+    editModal.close();
+    document.body.classList.remove("modal-open");
+  });
+
   // Ferme la modale quand je clique en dehors de celle ci
   window.addEventListener("click", (event) => {
     if (event.target === editModal) {
       editModal.close();
+      document.body.classList.remove("modal-open");
     }
   });
 </script>
