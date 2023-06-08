@@ -37,7 +37,6 @@ export const deleteGame = async (req: Request, res: Response) => {
 
   try {
     await game.findByIdAndRemove(idGame);
-    req.flash("success", "Le jeu a été supprimé avec succès !");
     res.redirect("/api/games");
   } catch (err) {
     console.error("error suppression");
@@ -54,7 +53,6 @@ export const editGame = async (req: Request, res: Response) => {
 
     if (!jeu) {
       console.log("Le jeu n'a pas été trouvé !");
-      req.flash("error", "Le jeu n'a pas été trouvé !");
       return res.redirect("/api/games");
     }
 
@@ -68,13 +66,9 @@ export const editGame = async (req: Request, res: Response) => {
     await jeu.save();
 
     console.log("Le jeu a été modifié !");
-    return res.status(200);
+    return res.status(200).send("");
   } catch (err) {
     console.error(err);
-    req.flash(
-      "error",
-      "Une erreur s'est produite lors de la modification du jeu !"
-    );
     res.redirect("/api/games");
   }
 };

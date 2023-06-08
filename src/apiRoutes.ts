@@ -18,63 +18,8 @@ apiRouter.delete("/games/:idGame", (req, res) => {
 // Route pour ajouter un jeu dans la BDD
 apiRouter.post("/games", gamesController.addGame);
 
-// Route qui affiche un formulaire pour MODIFIER un jeu
-// apiRouter.get("/game/edit/:idGame", async (req, res) => {
-//   const gameId = req.params.idGame;
-//   console.log(gameId);
-
-//   try {
-//     const jeu = await Game.findById(gameId);
-//     console.log(jeu);
-
-//     if (!jeu) {
-//       req.flash("error", "Le jeu n'a pas été trouvé !");
-//       return res.redirect("/api/games");
-//     }
-//     console.log("ID du jeu :", jeu._id);
-
-//     res.render("editGamesForm", { jeu });
-//   } catch (error) {
-//     console.error(error);
-//     req.flash("error", "Une erreur s'est produite lors du chargement du jeu !");
-//     res.redirect("/games");
-//   }
-// });
-
 // Route pour modifier un jeu dans la BDD
-apiRouter.post("/game/edit/:idGame", async (req: Request, res: Response) => {
-  const idGame = req.params.idGame;
-
-  try {
-    const jeu = await Game.findById(idGame);
-    console.log(idGame);
-
-    if (!jeu) {
-      console.log("Le jeu n'a pas été trouvé !");
-      return res.redirect("/api/games");
-    }
-
-    jeu.nom = req.body.nom;
-    jeu.editeur = req.body.editeur;
-    // jeu.nbJoueurs = req.body.nbJoueurs;
-    // jeu.dureePartie = req.body.dureePartie;
-    // jeu.cooperatif = req.body.cooperatif;
-    jeu.categorie = req.body.categorie;
-    console.log(req.body);
-
-    await jeu.save();
-
-    console.log("Le jeu a été modifié !");
-    return res.status(200).send("");
-  } catch (err) {
-    console.error(err);
-    req.flash(
-      "error",
-      "Une erreur s'est produite lors de la modification du jeu !"
-    );
-    res.redirect("/api/games");
-  }
-});
+apiRouter.post("/game/edit/:idGame", gamesController.editGame);
 
 // Route qui gère l'authentification et différentes redirections
 apiRouter.post(
