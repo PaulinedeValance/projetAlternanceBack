@@ -15,31 +15,31 @@ const gameSchema = new mongoose.Schema(
   {
     nom: {
       type: String,
-      required: true,
+      required: false,
     },
     editeur: {
       type: String,
-      required: true,
+      required: false,
     },
     nbJoueurs: {
       type: Number,
-      required: true,
+      required: false,
     },
     dureePartie: {
       type: Number,
-      required: true,
+      required: false,
     },
     cooperatif: {
       type: String,
       enum: ["oui", "non"],
       default: "oui",
-      required: true,
+      required: false,
     },
     categorie: {
       type: String,
       enum: categories,
       default: categories[0],
-      required: true,
+      required: false,
     },
     imageURL: String,
   },

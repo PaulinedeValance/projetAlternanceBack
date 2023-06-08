@@ -40,7 +40,7 @@ export const deleteGame = async (req: Request, res: Response) => {
     req.flash("success", "Le jeu a été supprimé avec succès !");
     res.redirect("/api/games");
   } catch (err) {
-    console.error("error");
+    console.error("error suppression");
   }
 };
 
@@ -60,16 +60,15 @@ export const editGame = async (req: Request, res: Response) => {
 
     jeu.nom = req.body.nom;
     jeu.editeur = req.body.editeur;
-    jeu.nbJoueurs = req.body.nbJoueurs;
-    jeu.dureePartie = req.body.dureePartie;
-    jeu.cooperatif = req.body.cooperatif;
+    // jeu.nbJoueurs = req.body.nbJoueurs;
+    // jeu.dureePartie = req.body.dureePartie;
+    // jeu.cooperatif = req.body.cooperatif;
     jeu.categorie = req.body.categorie;
 
     await jeu.save();
 
     console.log("Le jeu a été modifié !");
-    req.flash("success", "Le jeu a été modifié avec succès !");
-    res.redirect("/api/games");
+    return res.status(200);
   } catch (err) {
     console.error(err);
     req.flash(

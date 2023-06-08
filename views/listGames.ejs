@@ -64,24 +64,15 @@
         <h2 class="title-modale">Modifier un jeu</h2>
         <button class="close-modal">&times;</button>
         <hr />
-        <form
-          class="modale-style"
-          action="/api/game/edit/edit-game"
-          method="POST"
-        >
+        <form class="modale-style" action="/api/game/edit/" method="POST">
           <div>
             <label for="editGameName">Nom du jeu</label>
-            <input type="text" id="editGameName" name="editGameName" required />
+            <input type="text" id="editGameName" name="nom" required />
           </div>
 
           <div>
             <label for="editGamePublisher">Éditeur du jeu</label>
-            <input
-              type="text"
-              id="editGamePublisher"
-              name="editGamePublisher"
-              required
-            />
+            <input type="text" id="editGamePublisher" name="editeur" required />
           </div>
 
           <div>
@@ -89,7 +80,7 @@
             <input
               type="text"
               id="editGameCategory"
-              name="editGameCategory"
+              name="categorie"
               required
             />
           </div>
@@ -126,21 +117,27 @@
         });
     });
   });
+
   const container = document.querySelector("#container");
   const editBtns = document.querySelectorAll(".button-edit");
   const editModal = document.querySelector("#editGameModal");
   const closeModalBtn = document.querySelector(".close-modal");
+  const editForm = editModal.querySelector("form");
+  let jeuId;
+
   editBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
-      const jeuId = event.currentTarget.dataset.id;
+      jeuId = event.currentTarget.dataset.id;
       const jeuNom = event.currentTarget.dataset.nom;
       const jeuEditeur = event.currentTarget.dataset.editeur;
       const jeuCategorie = event.currentTarget.dataset.categorie;
+      //console.log(jeuId, jeuNom, jeuEditeur, jeuCategorie);
 
       // Ouvrir la modale
       editModal.showModal();
       document.body.classList.add("modal-open");
 
+      // Je pré-rempli les champs de la modale
       const editGameName = document.querySelector("#editGameName");
       const editGamePublisher = document.querySelector("#editGamePublisher");
       const editGameCategory = document.querySelector("#editGameCategory");
@@ -149,25 +146,58 @@
       editGamePublisher.value = jeuEditeur;
       editGameCategory.value = jeuCategorie;
 
-      const editForm = editModal.querySelector("form");
-      editForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        // Ferme la modale
-        editModal.close();
-      });
+      jeuId = jeuId;
     });
   });
 
   closeModalBtn.addEventListener("click", () => {
-    editModal.close();
-    document.body.classList.remove("modal-open");
+    closeEditModal();
   });
 
-  // Ferme la modale quand je clique en dehors de celle ci
+  // Ferme la modale quand je clique en dehors de celle-ci
   window.addEventListener("click", (event) => {
     if (event.target === editModal) {
-      editModal.close();
-      document.body.classList.remove("modal-open");
+      closeEditModal();
     }
+  });
+
+  function closeEditModal() {
+    editModal.close();
+    document.body.classList.remove("modal-open");
+  }
+
+  editForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const nom = editGameName.value;
+    const editeur = editGamePublisher.value;
+    const categorie = editGameCategory.value;
+    //console.log(jeuId, editedGameName, editedGamePublisher, editedGameCategory);
+
+    // Envoi des données modifiées au serveur
+    fetch("/api/game/edit/" + jeuId, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nom,
+        editeur,
+        categorie,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Fermer la modale
+          closeEditModal();
+
+          location.reload(); // Recharger la page pour afficher les modifications
+        } else {
+          console.log("Erreur lors de la sauvegarde des modifications");
+        }
+      })
+      .catch((error) => {
+        console.log("Erreur :", error);
+      });
   });
 </script>

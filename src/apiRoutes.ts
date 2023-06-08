@@ -1,5 +1,4 @@
 import gamesController from "./controllers/gamesController";
-import displayGamesController from "./controllers/displayGamesController";
 import Game from "./models/gamesModel";
 import express, { Request, Response, Router } from "express";
 import { uploadToS3 } from "../uploadFile";
@@ -20,29 +19,62 @@ apiRouter.delete("/games/:idGame", (req, res) => {
 apiRouter.post("/games", gamesController.addGame);
 
 // Route qui affiche un formulaire pour MODIFIER un jeu
-apiRouter.get("/game/edit/:idGame", async (req, res) => {
-  const gameId = req.params.idGame;
+// apiRouter.get("/game/edit/:idGame", async (req, res) => {
+//   const gameId = req.params.idGame;
+//   console.log(gameId);
+
+//   try {
+//     const jeu = await Game.findById(gameId);
+//     console.log(jeu);
+
+//     if (!jeu) {
+//       req.flash("error", "Le jeu n'a pas été trouvé !");
+//       return res.redirect("/api/games");
+//     }
+//     console.log("ID du jeu :", jeu._id);
+
+//     res.render("editGamesForm", { jeu });
+//   } catch (error) {
+//     console.error(error);
+//     req.flash("error", "Une erreur s'est produite lors du chargement du jeu !");
+//     res.redirect("/games");
+//   }
+// });
+
+// Route pour modifier un jeu dans la BDD
+apiRouter.post("/game/edit/:idGame", async (req: Request, res: Response) => {
+  const idGame = req.params.idGame;
 
   try {
-    const jeu = await Game.findById(gameId);
-    console.log(jeu);
+    const jeu = await Game.findById(idGame);
+    console.log(idGame);
 
     if (!jeu) {
-      req.flash("error", "Le jeu n'a pas été trouvé !");
+      console.log("Le jeu n'a pas été trouvé !");
       return res.redirect("/api/games");
     }
-    console.log("ID du jeu :", jeu._id);
 
-    res.render("editGamesForm", { jeu });
-  } catch (error) {
-    console.error(error);
-    req.flash("error", "Une erreur s'est produite lors du chargement du jeu !");
+    jeu.nom = req.body.nom;
+    jeu.editeur = req.body.editeur;
+    // jeu.nbJoueurs = req.body.nbJoueurs;
+    // jeu.dureePartie = req.body.dureePartie;
+    // jeu.cooperatif = req.body.cooperatif;
+    jeu.categorie = req.body.categorie;
+    console.log(req.body);
+
+    await jeu.save();
+
+    console.log("Le jeu a été modifié !");
+    return res.status(200).send("");
+  } catch (err) {
+    console.error(err);
+    req.flash(
+      "error",
+      "Une erreur s'est produite lors de la modification du jeu !"
+    );
     res.redirect("/api/games");
   }
 });
-
-// Route pour modifier un jeu dans la BDD
-apiRouter.post("/game/edit/edit-game", gamesController.editGame);
 
 // Route qui gère l'authentification et différentes redirections
 apiRouter.post(
