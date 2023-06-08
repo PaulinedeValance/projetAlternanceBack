@@ -13,7 +13,7 @@
   </head>
   <body>
     <div id="container">
-      <form id="search-form" onsubmit="myFunction(); return false;">
+      <form id="search-form" onsubmit="searchBar(); return false;">
         <input
           type="text"
           id="searchInput"
@@ -55,7 +55,7 @@
               ></button>
             </td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td>
               <% if (jeu.imageURL) { %>
               <img
@@ -64,7 +64,7 @@
               />
               <% } %>
             </td>
-          </tr>
+          </tr> -->
           <% }) %>
         </tbody>
       </table>
@@ -219,7 +219,7 @@
 
     searchInput.addEventListener("input", myFunction);
 
-    function myFunction() {
+    function searchBar() {
       let filter = searchInput.value.toLowerCase();
 
       gameRows.forEach(function (row) {
