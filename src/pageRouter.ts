@@ -4,6 +4,7 @@ import { categories } from "./models/gamesModel";
 import { translate } from "./services/translate";
 //import gamesController from "./controllers/gamesController";
 import displayGamesController from "./controllers/displayGamesController";
+import gamesController from "./controllers/gamesController";
 
 const pageRouter = express.Router();
 
@@ -21,6 +22,8 @@ pageRouter.get("/game/add", (req: any, res: any) => {
   });
   res.render("addGamesForm", { categories: tmp });
 });
+
+pageRouter.get("/games/search", gamesController.searchGames);
 
 // Route qui affiche la liste des jeux rentrés dans la BDD
 pageRouter.get("/games", displayGamesController.displayGamesList);

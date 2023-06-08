@@ -284,3 +284,22 @@ hr {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
+#container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#search-form {
+  margin-left: auto;
+}
+
+.button-search {
+  font-size: 25px;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  color: rgb(35, 34, 34);
+}

@@ -13,8 +13,16 @@
   </head>
   <body>
     <div id="container">
+      <form id="search-form" onsubmit="myFunction(); return false;">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Rechercher un jeu..."
+        />
+        <button class="button-search fas fa-search" type="submit"></button>
+      </form>
       <h1>Liste de jeux en BDD</h1>
-      <table class="styled-table">
+      <table class="styled-table" id="gameTable">
         <thead>
           <tr>
             <th>Nom</th>
@@ -95,6 +103,7 @@
 </html>
 
 <script>
+  // Suppression d'un jeu
   const deleteBtns = document.querySelectorAll(".button-delete");
   deleteBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
@@ -118,6 +127,7 @@
     });
   });
 
+  // Modification d'un jeu
   const container = document.querySelector("#container");
   const editBtns = document.querySelectorAll(".button-edit");
   const editModal = document.querySelector("#editGameModal");
@@ -199,5 +209,30 @@
       .catch((error) => {
         console.log("Erreur :", error);
       });
+  });
+
+  // Barre de recherche
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+    const gameRows = document.querySelectorAll("#gameTable tbody tr");
+
+    searchInput.addEventListener("input", myFunction);
+
+    function myFunction() {
+      let filter = searchInput.value.toLowerCase();
+
+      gameRows.forEach(function (row) {
+        let td = row.getElementsByTagName("td")[0];
+        if (td) {
+          let txtValue = td.textContent || td.innerText;
+          if (txtValue.toLowerCase().indexOf(filter) > -1) {
+            row.style.display = "";
+          } else {
+            row.style.display = "none";
+          }
+        }
+      });
+    }
   });
 </script>

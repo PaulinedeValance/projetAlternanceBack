@@ -73,4 +73,25 @@ export const editGame = async (req: Request, res: Response) => {
   }
 };
 
-export default { addGame, deleteGame, editGame };
+// Rechercher un jeu
+export const searchGames = async (req: Request, res: Response) => {
+  const searchQuery = req.query.query;
+
+  try {
+    const games = await game.find({
+      $or: [
+        { nom: { $regex: searchQuery, $options: "i" } }, // Recherche par nom (insensible à la casse)
+        { editeur: { $regex: searchQuery, $options: "i" } }, // Recherche par éditeur
+      ],
+    });
+
+    res.json(games);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Une erreur s'est produite lors de la recherche des jeux.",
+    });
+  }
+};
+
+export default { addGame, deleteGame, editGame, searchGames };
