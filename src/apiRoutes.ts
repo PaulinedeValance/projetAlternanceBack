@@ -31,6 +31,12 @@ apiRouter.post(
   })
 );
 
+// Route pour récupérer tous les jeux
+apiRouter.get("/games", async (req, res) => {
+  const games = await Game.find();
+  return res.json(games);
+});
+
 // Route pour l'upload
 apiRouter.post("/api/upload", upload.single("file"), (req, res) => {
   console.log(req);

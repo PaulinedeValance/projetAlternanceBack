@@ -8,6 +8,7 @@ import connectDB from "./dataBase";
 import serveStatic from "serve-static";
 import apiRouter from "./apiRoutes";
 import methodOverride from "method-override";
+import cors from "cors";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ const port = process.env.PORT;
 
 // Définir le dossier public comme répertoire pour les fichiers statiques
 app.use(serveStatic("public"));
+app.use(cors());
 
 // app.use(
 //   cors({
