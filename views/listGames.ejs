@@ -55,16 +55,16 @@
               ></button>
             </td>
           </tr>
-          <!-- <tr>
-            <td>
+          <tr>
+            <!-- <td>
               <% if (jeu.imageURL) { %>
               <img
                 src="<%= jeu.imageURL %>"
                 alt="Image du jeu <%= jeu.nom %>"
               />
               <% } %>
-            </td>
-          </tr> -->
+            </td> -->
+          </tr>
           <% }) %>
         </tbody>
       </table>
@@ -185,7 +185,7 @@
     //console.log(jeuId, editedGameName, editedGamePublisher, editedGameCategory);
 
     // Envoi des données modifiées au serveur
-    fetch("/api/game/edit/" + jeuId, {
+    fetch("/api/game/" + jeuId, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

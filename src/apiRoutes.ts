@@ -19,7 +19,7 @@ apiRouter.delete("/games/:idGame", (req, res) => {
 apiRouter.post("/games", gamesController.addGame);
 
 // Route pour modifier un jeu dans la BDD
-apiRouter.post("/game/edit/:idGame", gamesController.editGame);
+apiRouter.post("/game/:idGame", gamesController.editGame);
 
 // Route qui gère l'authentification et différentes redirections
 apiRouter.post(
@@ -38,7 +38,7 @@ apiRouter.get("/games", async (req, res) => {
 });
 
 // Route pour l'upload
-apiRouter.post("/api/upload", upload.single("file"), (req, res) => {
+apiRouter.post("/upload", upload.single("file"), (req, res) => {
   console.log(req);
   // Vérification si req.file existe et est défini
   if (req.file) {
