@@ -4,22 +4,25 @@ import express, { Request, Response, Router } from "express";
 import { uploadToS3 } from "../uploadFile";
 import multer from "multer";
 import passport from "passport";
+import usersController from "./controllers/usersController";
 
 const apiRouter = express.Router();
 const upload = multer({ dest: "uploads/" });
 
-// Route pour supprimer un jeu
+//Route pour supprimer un jeu
 apiRouter.delete("/games/:idGame", (req, res) => {
   const idGame = req.params.idGame;
   gamesController.deleteGame(req, res);
   res.json();
 });
 
+//apiRouter.delete("/games/:idGame", gamesController.deleteGame);
+
 // Route pour ajouter un jeu dans la BDD
 apiRouter.post("/games", gamesController.addGame);
 
 // Route pour modifier un jeu dans la BDD
-apiRouter.post("/game/:idGame", gamesController.editGame);
+apiRouter.put("/game/:idGame", gamesController.editGame);
 
 // Route qui gère l'authentification et différentes redirections
 apiRouter.post(
@@ -62,5 +65,8 @@ apiRouter.post("/upload", upload.single("file"), (req, res) => {
     res.status(400).send("Aucun fichier téléchargé !");
   }
 });
+
+// Route pour ajouter un user
+apiRouter.post("/users", usersController.addUser);
 
 export default apiRouter;
