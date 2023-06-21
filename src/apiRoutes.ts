@@ -69,4 +69,6 @@ apiRouter.post("/upload", upload.single("file"), (req, res) => {
 // Route pour ajouter un user
 apiRouter.post("/users", usersController.addUser);
 
+apiRouter.post("/login/user", usersController.login);
+
 export default apiRouter;

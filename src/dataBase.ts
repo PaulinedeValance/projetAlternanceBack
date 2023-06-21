@@ -20,8 +20,6 @@ const connectDB = async () => {
       //useUnifiedTopology: true,
     });
 
-    //console.log(mongoose.connection.readyState);
-
     //Ajouter un nouvel utilisateur dans la collection appAdmin
     const newUser = new appAdmin({
       username: "monUsername",
