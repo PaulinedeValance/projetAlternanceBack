@@ -1,6 +1,8 @@
 import users from "../models/usersModel";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
+import { v4 as uuidv4 } from "uuid";
+import Session from "../models/sessionsModel";
 
 // Ajout d'un user dans la BDD
 export const addUser = async (req: Request, res: Response) => {
@@ -25,7 +27,6 @@ export const addUser = async (req: Request, res: Response) => {
 
       await newUser.save();
       console.log("L'utilisateur a été ajouté !");
-      // res.redirect("/login"); // Redirection (à determiner)
     }
   } catch (err) {
     console.error(err);
@@ -35,21 +36,32 @@ export const addUser = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   let email = req.body.email;
   let password = req.body.password;
-  console.log("here");
 
   try {
     // Je recherche l'utilisateur dans la base de données par son email
     const user = await users.findOne({ email });
-    console.log("here again");
+
     if (user) {
       // Si je trouve , je vérifie le mot de passe
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (passwordMatch) {
-        // Si les infos match
-        return res.status(200).json({ user }); // Réponse HTTP 200 (OK)
+        // Génération d'un id de session unique
+        const sessionId = uuidv4();
+
+        // Je stock l'id de session dans la BDD
+        const session = new Session({
+          sessionId: sessionId,
+          userId: user._id,
+        });
+
+        await session.save();
+
+        // On renvoie l'id de session au client en tant que cookie
+
+        res.json();
       } else {
-        // Mot de passe incorrect
+        // Si mot de passe incorrect
         res.sendStatus(401); // Réponse HTTP 401
       }
     } else {
