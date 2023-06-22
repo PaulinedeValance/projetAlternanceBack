@@ -57,8 +57,6 @@ export const login = async (req: Request, res: Response) => {
 
         await session.save();
 
-        // On renvoie l'id de session au client en tant que cookie
-
         res.json();
       } else {
         // Si mot de passe incorrect
