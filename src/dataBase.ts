@@ -30,8 +30,6 @@ const connectDB = async () => {
     if (count === 0) {
       await newUser.save();
       console.log("New user added to appAdmin collection");
-    } else {
-      console.log("User already exists in appAdmin collection");
     }
   } catch (err) {
     console.error(`Error while connecting to MongoDB: ${err}`);
