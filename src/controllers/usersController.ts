@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import Session from "../models/sessionsModel";
+import passport from "passport";
 
 // Ajout d'un user dans la BDD
 export const addUser = async (req: Request, res: Response) => {
@@ -26,7 +27,7 @@ export const addUser = async (req: Request, res: Response) => {
       newUser.password = hashedPassword;
 
       await newUser.save();
-      console.log("L'utilisateur a été ajouté !");
+      res.send(200);
     }
   } catch (err) {
     console.error(err);
