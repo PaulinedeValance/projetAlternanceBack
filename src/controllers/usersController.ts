@@ -49,17 +49,9 @@ export const login = async (req: Request, res: Response) => {
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (passwordMatch) {
-        // Génération d'un id de session unique
-        const sessionId = uuidv4();
-
-        // Je stock l'id de session dans la BDD
-        const session = new Session({
-          sessionId: sessionId,
-          userId: user._id,
-        });
-
-        await session.save();
-
+        req.session.userId = user.id;
+        req.session.save();
+        console.log("login", req.session);
         res.json();
       } else {
         // Si mot de passe incorrect

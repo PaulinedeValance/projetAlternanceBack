@@ -36,6 +36,9 @@ apiRouter.post(
 
 // Route pour récupérer tous les jeux
 apiRouter.get("/games", async (req, res) => {
+  console.log("games", req.session.userId);
+  if (!req.session.userId) {
+  }
   const games = await Game.find();
   return res.json(games);
 });

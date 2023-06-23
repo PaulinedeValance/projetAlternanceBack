@@ -19,22 +19,31 @@ const port = process.env.PORT;
 
 // Définir le dossier public comme répertoire pour les fichiers statiques
 app.use(serveStatic("public"));
-app.use(cors());
+//app.use(cors());
 
-// app.use(
-//   cors({
-//     origin: "*",
-//   })
-// );
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+declare module "express-session" {
+  interface SessionData {
+    id: string;
+    userId: string;
+  }
+}
+
 app.use(
   session({
-    secret: "mysecretkey",
-    resave: true,
+    secret: process.env.SESSION_SECRET_KEY || "",
+    resave: false,
     saveUninitialized: true,
+    cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 },
   })
 );
 
@@ -45,8 +54,6 @@ app.use(flash());
 
 app.use("/", pageRouter); // utilisation du routeur
 app.use("/api", apiRouter);
-
-app.use(passport.initialize()); // initialisation de la librairie Passport.js
 
 app.set("view engine", "ejs");
 // Utilisation de method
