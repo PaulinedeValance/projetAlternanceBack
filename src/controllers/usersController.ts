@@ -27,7 +27,9 @@ export const addUser = async (req: Request, res: Response) => {
       newUser.password = hashedPassword;
 
       await newUser.save();
-      res.send(200);
+      //res.send(200);
+      res.sendStatus(200);
+      console.log("L'utilisateur a été ajouté !");
     }
   } catch (err) {
     console.error(err);
