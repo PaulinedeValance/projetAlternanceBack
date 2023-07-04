@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 import pageRouter from "./pageRouter";
-import passport from "./passport";
 import flash from "connect-flash";
 import session from "express-session";
 import connectDB from "./dataBase";

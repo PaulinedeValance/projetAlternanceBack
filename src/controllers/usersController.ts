@@ -2,8 +2,8 @@ import users from "../models/usersModel";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
-import Session from "../models/sessionsModel";
-import passport from "passport";
+// import Session from "../models/sessionsModel";
+// import passport from "passport";
 
 // Ajout d'un user dans la BDD
 export const addUser = async (req: Request, res: Response) => {
