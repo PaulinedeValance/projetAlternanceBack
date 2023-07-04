@@ -10,13 +10,11 @@ const apiRouter = express.Router();
 const upload = multer({ dest: "uploads/" });
 
 //Route pour supprimer un jeu
-apiRouter.delete("/games/:idGame", (req, res) => {
-  const idGame = req.params.idGame;
-  gamesController.deleteGame(req, res);
-  res.json();
-});
+// apiRouter.delete("/games/:idGame", async (req, res) => {
+//   await gamesController.deleteGame(req, res);
+// });
 
-//apiRouter.delete("/games/:idGame", gamesController.deleteGame);
+apiRouter.delete("/games/:idGame", gamesController.deleteGame);
 
 // Route pour ajouter un jeu dans la BDD
 apiRouter.post("/games", gamesController.addGame);

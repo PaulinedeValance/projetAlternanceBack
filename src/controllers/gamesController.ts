@@ -37,7 +37,8 @@ export const deleteGame = async (req: Request, res: Response) => {
 
   try {
     await game.findByIdAndRemove(idGame);
-    res.redirect("/api/games");
+
+    res.json();
   } catch (err) {
     console.error("error suppression");
   }
