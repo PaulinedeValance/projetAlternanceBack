@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import jeuxModel from "./models/gamesModel";
 import appAdmin from "./models/appAdminModel";
 dotenv.config();
 
