@@ -1,18 +1,13 @@
-import gamesController from "./controllers/gamesController";
+import gamesController, { uploadImages } from "./controllers/gamesController";
 import Game from "./models/gamesModel";
 import express, { Request, Response, Router } from "express";
-import { uploadToS3 } from "../uploadFile";
+//import { uploadToS3 } from "../uploadFile";
 import multer from "multer";
 import passport from "passport";
 import usersController from "./controllers/usersController";
 
 const apiRouter = express.Router();
 const upload = multer({ dest: "uploads/" });
-
-//Route pour supprimer un jeu
-// apiRouter.delete("/games/:idGame", async (req, res) => {
-//   await gamesController.deleteGame(req, res);
-// });
 
 apiRouter.delete("/games/:idGame", gamesController.deleteGame);
 
@@ -34,38 +29,15 @@ apiRouter.post(
 
 // Route pour récupérer tous les jeux
 apiRouter.get("/games", async (req, res) => {
-  console.log("games", req.session.userId);
-  if (!req.session.userId) {
-  }
+  // console.log("games", req.session.userId);
+  // if (!req.session.userId) {
+  // }
   const games = await Game.find();
   return res.json(games);
 });
 
-// Route pour l'upload
-apiRouter.post("/upload", upload.single("file"), (req, res) => {
-  console.log(req);
-  // Vérification si req.file existe et est défini
-  if (req.file) {
-    // Accéder au fichier téléchargé via req.file
-    const file = req.file;
-
-    // Utilisation de la fonction uploadToS3 pour envoyer le fichier vers S3
-    uploadToS3(file.path, req.file.originalname)
-      .then((result) => {
-        // Je récupère l'URL du fichier téléchargé depuis le résultat
-        const fileUrl = result.Location;
-        // Envoi un objet Json avec la propriété fileUrl
-        res.json({ fileUrl });
-      })
-      .catch((error) => {
-        // Gestion des erreurs lors de l'upload
-        res.status(500).send("Erreur lors de l'upload : " + error);
-      });
-  } else {
-    // Aucun fichier téléchargé, gestion de l'erreur
-    res.status(400).send("Aucun fichier téléchargé !");
-  }
-});
+// Route pour l'upload d'images
+apiRouter.post("/upload", upload.single("file"), uploadImages);
 
 // Route pour ajouter un user
 apiRouter.post("/users", usersController.addUser);

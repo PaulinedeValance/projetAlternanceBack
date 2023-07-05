@@ -1,3 +1,4 @@
+import { uploadToS3 } from "../../uploadFile";
 import game from "../models/gamesModel";
 import { Request, Response } from "express";
 
@@ -53,7 +54,7 @@ export const editGame = async (req: Request, res: Response) => {
     console.log(idGame);
 
     if (!jeu) {
-      console.log("Le jeu n'a pas été trouvé !");
+      //console.log("Le jeu n'a pas été trouvé !");
       return res.redirect("/api/games");
     }
 
@@ -66,7 +67,7 @@ export const editGame = async (req: Request, res: Response) => {
 
     await jeu.save();
 
-    console.log("Le jeu a été modifié !");
+    //console.log("Le jeu a été modifié !");
     return res.status(200).send("");
   } catch (err) {
     console.error(err);
@@ -94,5 +95,30 @@ export const searchGames = async (req: Request, res: Response) => {
     });
   }
 };
+
+export function uploadImages(req: Request, res: Response) {
+  console.log(req);
+  // Vérification si req.file existe et est défini
+  if (req.file) {
+    // Accéder au fichier téléchargé via req.file
+    const file = req.file;
+
+    // Utilisation de la fonction uploadToS3 pour envoyer le fichier vers S3
+    uploadToS3(file.path, req.file.originalname)
+      .then((result) => {
+        // Je récupère l'URL du fichier téléchargé depuis le résultat
+        const fileUrl = result.Location;
+        // Envoi un objet Json avec la propriété fileUrl
+        res.json({ fileUrl });
+      })
+      .catch((error) => {
+        // Gestion des erreurs lors de l'upload
+        res.status(500).send("Erreur lors de l'upload : " + error);
+      });
+  } else {
+    // Aucun fichier téléchargé, gestion de l'erreur
+    res.status(400).send("Aucun fichier téléchargé !");
+  }
+}
 
 export default { addGame, deleteGame, editGame, searchGames };
