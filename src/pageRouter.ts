@@ -2,9 +2,8 @@ import express from "express";
 import passport from "passport";
 import { categories } from "./models/gamesModel";
 import { translate } from "./services/translate";
-//import gamesController from "./controllers/gamesController";
 import displayGamesController from "./controllers/displayGamesController";
-import gamesController from "./controllers/gamesController";
+import gamesController from "./api/gamesController";
 
 const pageRouter = express.Router();
 

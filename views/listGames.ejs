@@ -34,7 +34,7 @@
         </thead>
         <tbody>
           <% jeux.forEach(jeu => { %>
-          <tr>
+          <tr id="<%= jeu._id %>">
             <td><%= jeu.nom %></td>
             <td><%= jeu.editeur %></td>
             <td><%= jeu.categorie %></td>
@@ -108,7 +108,6 @@
   deleteBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
       const jeuId = event.target.dataset.id;
-      //console.log("Cliqué sur le bouton de suppression avec l'ID :", jeuId);
       fetch("/api/games/" + jeuId, {
         method: "DELETE",
         headers: {

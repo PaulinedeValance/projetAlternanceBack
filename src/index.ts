@@ -5,7 +5,7 @@ import flash from "connect-flash";
 import session from "express-session";
 import connectDB from "./dataBase";
 import serveStatic from "serve-static";
-import apiRouter from "./apiRoutes";
+import router from "./api/apiRoutes";
 import methodOverride from "method-override";
 import cors from "cors";
 
@@ -52,7 +52,7 @@ connectDB();
 app.use(flash());
 
 app.use("/", pageRouter); // utilisation du routeur
-app.use("/api", apiRouter);
+app.use("/api", router);
 
 app.set("view engine", "ejs");
 // Utilisation de method
