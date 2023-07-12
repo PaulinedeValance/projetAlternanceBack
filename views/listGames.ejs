@@ -136,6 +136,7 @@
 
   editBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
+      console.log("Bouton cliqué")
       jeuId = event.currentTarget.dataset.id;
       const jeuNom = event.currentTarget.dataset.nom;
       const jeuEditeur = event.currentTarget.dataset.editeur;
@@ -185,7 +186,7 @@
 
     // Envoi des données modifiées au serveur
     fetch("/api/game/" + jeuId, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -200,7 +201,8 @@
           // Fermer la modale
           closeEditModal();
 
-          location.reload(); // Recharger la page pour afficher les modifications
+          location.reload();
+          console.log("test"); // Recharger la page pour afficher les modifications
         } else {
           console.log("Erreur lors de la sauvegarde des modifications");
         }
