@@ -30,7 +30,6 @@ router.post('/games', async (req: Request, res: Response) => {
 
 // Route pour modifier un jeu dans la BDD
 
-
 router.put('/game/:idGame', async (req: Request, res: Response) => {
   await editGame2(req.body, req.params.idGame)
   return res.json()
@@ -57,6 +56,22 @@ router.post(
 )
 
 router.post('/login/user', usersController.login)
+
+// Route qui gère la déconnexion
+router.get('/logout', (req, res, next) => {
+  req.logout(err => {
+    if (err) {
+      return next(err)
+    }
+    // Détruire la session
+    req.session.destroy(err => {
+      if (err) {
+        return next(err)
+      }
+      res.redirect('/login/admin')
+    })
+  })
+})
 
 ////////////
 /// MEDIA ///
