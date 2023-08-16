@@ -40,6 +40,8 @@ passport.serializeUser(function (user: any, done) {
 passport.deserializeUser(async (id: unknown, done) => {
   try {
     if (typeof id === 'string') {
+      console.log('session serializer', id)
+
       // On convertit l'ID de la session en ObjectId avant de rechercher l'utilisateur
       const userId = new mongoose.Types.ObjectId(id)
       const user = await User.findById(userId).lean()

@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 export const categories = [
-  "stratégie",
-  "famille",
-  "party game",
-  "enfant",
-  "coopératif",
-  "deck-building",
-  "cartes",
-  "roll&write",
-];
+  'stratégie',
+  'famille',
+  'party game',
+  'enfant',
+  'coopératif',
+  'deck-building',
+  'cartes',
+  'roll&write',
+]
 
 const gameSchema = new mongoose.Schema(
   {
@@ -31,8 +31,8 @@ const gameSchema = new mongoose.Schema(
     },
     cooperatif: {
       type: String,
-      enum: ["oui", "non"],
-      default: "oui",
+      enum: ['oui', 'non'],
+      default: 'oui',
       required: false,
     },
     categorie: {
@@ -42,10 +42,14 @@ const gameSchema = new mongoose.Schema(
       required: false,
     },
     imageURL: String,
+    description: {
+      type: String,
+      required: false,
+    },
   },
-  { collection: "jeux" }
-);
+  { collection: 'jeux' }
+)
 
-const Game = mongoose.model("Jeu", gameSchema);
+const Game = mongoose.model('Jeu', gameSchema)
 
-export default Game;
+export default Game

@@ -4,6 +4,7 @@ import express, { Request, Response } from 'express'
 import multer from 'multer'
 import passport from 'passport'
 import usersController from '../controllers/usersController'
+import UserCollection from '../models/userCollectionModel'
 
 const router = express.Router()
 const upload = multer({ dest: 'uploads/' })
@@ -14,8 +15,13 @@ const upload = multer({ dest: 'uploads/' })
 
 // Route pour récupérer tous les jeux
 router.get('/games', async (req, res) => {
-  const games = await Game.find()
+  const games = await Game.find().select(['nom', 'imageURL'])
   return res.json(games)
+})
+
+router.get('/games/:id', async (req, res) => {
+  const games = await Game.find({ _id: req.params.id })
+  return res.json(games[0])
 })
 
 // Route pour ajouter un jeu dans la BDD
@@ -54,6 +60,13 @@ router.post(
     failureFlash: true,
   })
 )
+
+// router.get('/users', (req, res) => {
+//   // console.log('this is my id', req.session.userId)
+// })
+
+// Route pour récupérer les informations de l'utilisateur en fonction de son ID
+router.get('/users/:userId', usersController.getUserById)
 
 router.post('/login/user', usersController.login)
 

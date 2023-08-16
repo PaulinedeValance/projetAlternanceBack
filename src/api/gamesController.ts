@@ -43,13 +43,15 @@ export const deleteGame = async (gameId: string) => {
  * @param gameObject un objet contenant un jeu (nom, categorie...)
  * @param gameId l'id d'un jeu
  */
-export const editGame2 = async (gameObject: {nom:string, categorie:string, editeur: string}, gameId:string) => {
-  await GameModel.findByIdAndUpdate(gameId, gameObject) 
+export const editGame2 = async (
+  gameObject: { nom: string; categorie: string; editeur: string },
+  gameId: string
+) => {
+  await GameModel.findByIdAndUpdate(gameId, gameObject)
 }
 
 // export const editGame = async (req: Request, res: Response) => {
 //   const idGame = req.params.idGame
-  
 
 //   try {
 //     const newGame = await GameModel.findById(idGame)
@@ -75,23 +77,22 @@ export const editGame2 = async (gameObject: {nom:string, categorie:string, edite
 
 // Rechercher un jeu
 export const searchGames = async (req: Request, res: Response) => {
-  const searchQuery = req.query.query
-
-  try {
-    const games = await GameModel.find({
-      $or: [
-        { nom: { $regex: searchQuery, $options: 'i' } }, // Recherche par nom (insensible à la casse)
-        { editeur: { $regex: searchQuery, $options: 'i' } }, // Recherche par éditeur
-      ],
-    })
-
-    res.json(games)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({
-      error: "Une erreur s'est produite lors de la recherche des jeux.",
-    })
-  }
+  // const searchQuery = req.query.query
+  // console.log(searchQuery)
+  // try {
+  //   const games = await GameModel.find({
+  //     $or: [
+  //       { nom: { $regex: searchQuery, $options: 'i' } }, // Recherche par nom (insensible à la casse)
+  //       { editeur: { $regex: searchQuery, $options: 'i' } }, // Recherche par éditeur
+  //     ],
+  //   })
+  //   res.json(games)
+  // } catch (error) {
+  //   console.error(error)
+  //   res.status(500).json({
+  //     error: "Une erreur s'est produite lors de la recherche des jeux.",
+  //   })
+  // }
 }
 
 export function uploadImages(req: Request, res: Response) {
