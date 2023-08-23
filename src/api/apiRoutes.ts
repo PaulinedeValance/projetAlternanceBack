@@ -70,7 +70,7 @@ router.get('/users/:userId', usersController.getUserById)
 
 router.post('/login/user', usersController.login)
 
-// Route qui gère la déconnexion
+// Route qui gère la déconnexion de l'admin
 router.get('/logout', (req, res, next) => {
   req.logout(err => {
     if (err) {
@@ -82,6 +82,21 @@ router.get('/logout', (req, res, next) => {
         return next(err)
       }
       res.redirect('/login/admin')
+    })
+  })
+})
+
+// Route qui gère la déconnexion du user
+router.get('/logout', (req, res, next) => {
+  req.logout(err => {
+    if (err) {
+      return next(err)
+    }
+    req.session.destroy(err => {
+      if (err) {
+        return next(err)
+      }
+      res.redirect('/')
     })
   })
 })
