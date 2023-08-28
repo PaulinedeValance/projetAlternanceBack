@@ -52,7 +52,7 @@ export const login = async (req: Request, res: Response) => {
         req.session.userId = user.id
         req.session.save()
         console.log('login', req.session)
-        res.json()
+        res.json(user)
       } else {
         // Si mot de passe incorrect
         res.sendStatus(401) // Réponse HTTP 401

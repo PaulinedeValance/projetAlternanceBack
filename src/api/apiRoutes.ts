@@ -129,4 +129,7 @@ router.post('/wishlist', userGamesWishlistController.addToWishlist)
 // Route pour obtenir la wishlist de jeux d'un utilisateur
 router.get('/user/wishlist/:userId', userGamesWishlistController.getUserWishlist)
 
+// Route pour supprimer un jeu dans la ludothèque d'un user
+router.delete('/user/collection/:userId/:gameId', userGamesCollectionController.removeFromCollection)
+
 export default router
