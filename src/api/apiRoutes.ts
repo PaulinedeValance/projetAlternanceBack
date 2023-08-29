@@ -4,9 +4,9 @@ import express, { Request, Response } from 'express'
 import multer from 'multer'
 import passport from 'passport'
 import usersController from '../controllers/usersController'
-import UserGamesCollection from '../models/userGamesCollectionModel'
 import userGamesCollectionController from '../controllers/userGamesCollectionController'
 import userGamesWishlistController from '../controllers/userGamesWishlistController'
+import logoutController from './logoutController'
 
 const router = express.Router()
 const upload = multer({ dest: 'uploads/' })
@@ -63,45 +63,14 @@ router.post(
   })
 )
 
-// router.get('/users', (req, res) => {
-//   // console.log('this is my id', req.session.userId)
-// })
-
 // Route pour récupérer les informations de l'utilisateur en fonction de son ID
 router.get('/users/:userId', usersController.getUserById)
 
+// Route qui gère la connexion de l'admin
 router.post('/login/user', usersController.login)
 
 // Route qui gère la déconnexion de l'admin
-router.get('/logout', (req, res, next) => {
-  req.logout(err => {
-    if (err) {
-      return next(err)
-    }
-    // Détruire la session
-    req.session.destroy(err => {
-      if (err) {
-        return next(err)
-      }
-      res.redirect('/login/admin')
-    })
-  })
-})
-
-// Route qui gère la déconnexion du user
-router.get('/logout', (req, res, next) => {
-  req.logout(err => {
-    if (err) {
-      return next(err)
-    }
-    req.session.destroy(err => {
-      if (err) {
-        return next(err)
-      }
-      res.redirect('/')
-    })
-  })
-})
+router.get('/logout', logoutController.logout)
 
 ////////////
 /// MEDIA ///
