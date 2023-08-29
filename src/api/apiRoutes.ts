@@ -63,9 +63,6 @@ router.post(
   })
 )
 
-// Route pour récupérer les informations de l'utilisateur en fonction de son ID
-router.get('/users/:userId', usersController.getUserById)
-
 // Route qui gère la connexion de l'admin
 router.post('/login/user', usersController.login)
 
@@ -83,23 +80,34 @@ router.post('/upload', upload.single('file'), uploadImages)
 /// USER ///
 ////////////
 
+// Route pour récupérer les informations de l'utilisateur en fonction de son ID
+router.get('/users/:userId', usersController.getUserById)
+
 // Route pour ajouter un user
 router.post('/users', usersController.addUser)
 
-// Route pour ajouter un jeu dans la ludothèque d'un user
-router.post('/collection', userGamesCollectionController.addToCollection)
+//////////////////
+/// COLLECTION ///
+/////////////////
 
 // Route pour obtenir la collection de jeux d'un utilisateur
 router.get('/user/collection/:userId', userGamesCollectionController.getUserCollection)
 
-// Route pour ajouter un jeu dans la wishlist d'un user
-router.post('/wishlist', userGamesWishlistController.addToWishlist)
+// Route pour ajouter un jeu dans la ludothèque d'un user
+router.post('/collection', userGamesCollectionController.addToCollection)
+
+// Route pour supprimer un jeu dans la ludothèque d'un user
+router.delete('/user/collection/:userId/:gameId', userGamesCollectionController.removeFromCollection)
+
+////////////////
+/// WISHLIST ///
+///////////////
 
 // Route pour obtenir la wishlist de jeux d'un utilisateur
 router.get('/user/wishlist/:userId', userGamesWishlistController.getUserWishlist)
 
-// Route pour supprimer un jeu dans la ludothèque d'un user
-router.delete('/user/collection/:userId/:gameId', userGamesCollectionController.removeFromCollection)
+// Route pour ajouter un jeu dans la wishlist d'un user
+router.post('/wishlist', userGamesWishlistController.addToWishlist)
 
 // Route pour supprimer un jeu dans la wishlist d'un user
 router.delete('/user/wishlist/:userId/:gameId', userGamesWishlistController.removeFromWishlist)
