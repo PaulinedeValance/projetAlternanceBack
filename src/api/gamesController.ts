@@ -43,37 +43,12 @@ export const deleteGame = async (gameId: string) => {
  * @param gameObject un objet contenant un jeu (nom, categorie...)
  * @param gameId l'id d'un jeu
  */
-export const editGame2 = async (
+export const editGame = async (
   gameObject: { nom: string; categorie: string; editeur: string },
   gameId: string
 ) => {
   await GameModel.findByIdAndUpdate(gameId, gameObject)
 }
-
-// export const editGame = async (req: Request, res: Response) => {
-//   const idGame = req.params.idGame
-
-//   try {
-//     const newGame = await GameModel.findById(idGame)
-
-//     if (!newGame) {
-//       return res.redirect('/api/games')
-//     }
-
-//     newGame.nom = req.body.nom
-//     newGame.editeur = req.body.editeur
-//     // jeu.nbJoueurs = req.body.nbJoueurs;
-//     // jeu.dureePartie = req.body.dureePartie;
-//     // jeu.cooperatif = req.body.cooperatif;
-//     newGame.categorie = req.body.categorie
-
-//     await newGame.save()
-//     return res.status(200).send('')
-//   } catch (err) {
-//     console.error(err)
-//     res.redirect('/api/games')
-//   }
-// }
 
 // Rechercher un jeu
 export const searchGames = async (req: Request, res: Response) => {
@@ -120,4 +95,4 @@ export function uploadImages(req: Request, res: Response) {
   }
 }
 
-export default { deleteGame, searchGames, editGame2 }
+export default { deleteGame, searchGames, editGame }

@@ -1,4 +1,4 @@
-import { addGame, deleteGame, editGame2, uploadImages } from './gamesController'
+import { addGame, deleteGame, editGame, uploadImages } from './gamesController'
 import Game from '../models/gamesModel'
 import express, { Request, Response } from 'express'
 import multer from 'multer'
@@ -39,7 +39,7 @@ router.post('/games', async (req: Request, res: Response) => {
 // Route pour modifier un jeu dans la BDD
 
 router.put('/game/:idGame', async (req: Request, res: Response) => {
-  await editGame2(req.body, req.params.idGame)
+  await editGame(req.body, req.params.idGame)
   return res.json()
 })
 

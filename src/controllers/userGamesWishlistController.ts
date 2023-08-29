@@ -55,8 +55,6 @@ export async function removeFromWishlist(req: Request, res: Response) {
   // const userId = req.params.userId
   // const gameId = req.params.gameId
   const { userId, gameId } = req.params
-  console.log(userId)
-  console.log(gameId)
 
   try {
     // Je retire le jeu de la ludothèque du user avec $pull
@@ -65,8 +63,6 @@ export async function removeFromWishlist(req: Request, res: Response) {
       { $pull: { games: gameId } },
       { new: true }
     )
-
-    console.log('wishlist du user:', userWishlist)
 
     if (!userWishlist) {
       return res.status(404).json({ message: 'Wishlist introuvable' })
