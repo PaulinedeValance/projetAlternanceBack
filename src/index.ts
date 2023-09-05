@@ -10,6 +10,7 @@ import requireAdmin from './middleware/requireAdmin'
 import methodOverride from 'method-override'
 import cors from 'cors'
 import passport from './passport'
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
 
@@ -48,6 +49,8 @@ app.use(
   })
 )
 
+app.use(cookieParser())
+
 // Initialisation de passport.js
 app.use(passport.initialize())
 app.use(passport.session())
@@ -73,3 +76,6 @@ app.get('/', (req: any, res: any) => {
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`)
 })
+// function cookieParser(): any {
+//   throw new Error('Function not implemented.')
+// }

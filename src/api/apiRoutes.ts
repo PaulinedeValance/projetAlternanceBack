@@ -7,6 +7,7 @@ import usersController from '../controllers/usersController'
 import userGamesCollectionController from '../controllers/userGamesCollectionController'
 import userGamesWishlistController from '../controllers/userGamesWishlistController'
 import logoutController from './logoutController'
+import User from '../models/usersModel'
 
 const router = express.Router()
 const upload = multer({ dest: 'uploads/' })
@@ -85,6 +86,47 @@ router.get('/users/:userId', usersController.getUserById)
 
 // Route pour ajouter un user
 router.post('/users', usersController.addUser)
+
+// router.get('/userdata/:userId', async (req, res) => {
+//   const userId = req.params.userId // Récupérez l'ID de l'utilisateur depuis les paramètres de l'URL
+
+//   try {
+//     const userData = await User.findById(userId).select(['username', 'email', 'id']) // Récupérez les données de l'utilisateur par son ID
+
+//     if (!userData) {
+//       return res.status(404).json({ message: 'Utilisateur non trouvé' })
+//     }
+
+//     res.json(userData) // Renvoyez les données de l'utilisateur au format JSON
+//   } catch (error) {
+//     console.error(error)
+//     res.status(500).json({ message: "Erreur lors de la récupération des informations de l'utilisateur" })
+//   }
+// })
+
+router.get('/userdata', async (req, res) => {
+  const userId = req.session.userId
+  console.log('test :', userId)
+
+  if (!userId) {
+    return res.status(401).json({ message: 'Utilisateur non authentifié' })
+  }
+
+  try {
+    // Chargement des données de l'utilisateur depuis la base de données
+    const userData = await User.findById(userId)
+
+    if (!userData) {
+      return res.status(404).json({ message: 'Utilisateur non trouvé' })
+    }
+
+    // Réponse avec les données de l'utilisateur
+    res.json(userData)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: "Erreur lors de la récupération des données de l'utilisateur" })
+  }
+})
 
 //////////////////
 /// COLLECTION ///
