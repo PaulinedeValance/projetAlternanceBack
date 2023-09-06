@@ -1,8 +1,8 @@
 /* Police */
-@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:wght@700&family=Cabin+Sketch:wght@700&family=Handlee&family=Pacifico&family=Patrick+Hand+SC&family=Sue+Ellen+Francisco&display=swap');
 
 body {
-  font-family: "Maven Pro", sans-serif;
+  font-family: 'Bellota Text', cursive;
 }
 
 h1 {
@@ -42,6 +42,7 @@ input {
   border: none;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  font-family: 'Bellota Text', cursive;
 }
 
 .button-style {
@@ -53,6 +54,7 @@ input {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: 'Bellota Text', cursive;
 }
 
 .button-style:hover {
@@ -76,7 +78,7 @@ input {
   border-radius: 5px;
   text-decoration: none;
   position: fixed;
-  top: 25px;
+  top: 20px;
   left: 25px;
 }
 
@@ -184,11 +186,11 @@ input {
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 0.9em;
-  font-family: sans-serif;
   min-width: 400px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   margin: 0 auto;
   margin-top: 50px;
+  font-family: 'Bellota Text', cursive;
 }
 
 .styled-table thead tr {
@@ -303,4 +305,112 @@ hr {
   background-color: white;
   cursor: pointer;
   color: rgb(35, 34, 34);
+}
+
+/* Styles pour le menu burger */
+.menu-icon {
+  margin: 20px auto;
+  width: 30px; 
+  height: 20px;
+  cursor: pointer;
+  position: relative;
+  display: none;
+}
+
+.menu-icon span {
+  background-color: black;
+  height: 2px;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.menu-icon span:first-child {
+  top: 0;
+}
+
+.menu-icon span:nth-child(2) {
+  top: 8px;
+}
+
+.menu-icon span:last-child {
+  top: 16px; 
+}
+
+.menu-items {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+.menu-items li {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.menu-items li a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+
+/* Styles pour afficher le menu burger sur les écrans mobiles */
+@media (max-width: 978px) {
+  .menu-icon {
+    display: block; 
+  }
+
+  /* Styles pour le menu burger lorsqu'il est ouvert */
+  .menu-icon.open span:first-child {
+    top: 8px;
+    transform: rotate(45deg);
+  }
+
+  .menu-icon.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-icon.open span:last-child {
+    top: 8px;
+    transform: rotate(-45deg);
+  }
+
+  .menu-icon.open + .menu-items {
+    display: block;
+  }
+}
+
+/* Styles pour les mobiles */
+@media screen and (max-width: 978px) {
+
+  .form-style {
+    margin: 0 auto;
+    max-width: 90%;
+  }
+
+  .form-group {
+    margin-bottom: 10px; 
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+  }
+
+  .input-img {
+    max-width: 80%;
+  }
+
+  .button-list,
+  .button-logout {
+    display: none;
+  }
+
+  .menu-burger {
+    display: block;
+    
+  }
 }

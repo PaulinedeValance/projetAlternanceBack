@@ -1,90 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formulaire ajout de jeux</title>
-    <link rel="stylesheet" href="/css/style.css" />
-  </head>
-  <body>
-    <form method="post" action="/api/games" class="form-style">
-      <div>
-        <label for="nom">Nom du jeu :</label>
-        <input type="text" id="nom" name="nom" required />
-      </div>
-      <div>
-        <label for="editeur">Editeur :</label>
-        <input type="text" id="editeur" name="editeur" required />
-      </div>
-      <div>
-        <label for="nbJoueurs">Nombre de joueurs :</label>
-        <input type="number" id="nbJoueurs" name="nbJoueurs" required />
-      </div>
-      <div>
-        <label for="duree">Durée (en minutes) :</label>
-        <input type="number" id="dureePartie" name="dureePartie" required />
-      </div>
-      <div>
-        <label for="cooperatif">Coopératif : </label>
-        <select id="cooperatif" name="cooperatif">
-          <option value="oui">Oui</option>
-          <option value="non">Non</option>
-        </select>
-      </div>
-      <div>
-        <label for="categorie">Catégorie :</label>
-        <select id="categorie" name="categorie">
-          <% categories.forEach(category => { %>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulaire ajout de jeux</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <div class="menu-icon" id="menu-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <ul class="menu-items" id="menu-items">
+    <li><a href="/games">Liste des jeux</a></li>
+    <li><a href="/api/logout">Déconnexion</a></li>
+  </ul>
+  <form method="post" action="/api/games" class="form-style">
+    <div>
+      <label for="nom">Nom du jeu :</label>
+      <input type="text" id="nom" name="nom" required />
+    </div>
+    <div>
+      <label for="editeur">Editeur :</label>
+      <input type="text" id="editeur" name="editeur" required />
+    </div>
+    <div>
+      <label for="nbJoueurs">Nombre de joueurs :</label>
+      <input type="number" id="nbJoueurs" name="nbJoueurs" required />
+    </div>
+    <div>
+      <label for="duree">Durée (en minutes) :</label>
+      <input type="number" id="dureePartie" name="dureePartie" required />
+    </div>
+    <div>
+      <label for="cooperatif">Coopératif : </label>
+      <select id="cooperatif" name="cooperatif">
+        <option value="oui">Oui</option>
+        <option value="non">Non</option>
+      </select>
+    </div>
+    <div>
+      <label for="categorie">Catégorie :</label>
+      <select id="categorie" name="categorie">
+        <% categories.forEach(category=> { %>
           <option value="<%= category.id %><%= category.name %>">
             <%= category.id %>
           </option>
           <% }) %>
-        </select>
-      </div>
-      <div>
-        <label for="description">Description :</label>
-        <textarea id="description" name="description" rows="4" required></textarea>
-      </div>
-      <div>
-        <label for="imageURL"></label>
-        <input type="hidden" id="imageURL" name="imageURL" />
-      </div>
-      <div>
-        Selectionner une image :
-        <input type="file" name="file" multiple="multiple" id="file-upload" />
-      </div>
-      <button class="button-style" type="submit">Ajouter</button>
-    </form>
-    <a href="/games" class="button-list">Liste des jeux</a>
-    <a href="/api/logout" class="button-logout">Déconnexion</a>
-  
-    <script>
-      let uploadingBtn = document.getElementById("file-upload");
-      const handleChange = () => {
-        let form = new FormData();
-        form.append("file", uploadingBtn.files[0]);
-        fetch("/api/upload", {
-          method: "POST",
-          body: form,
-        })
-          .then((response) => {
-            if (response.ok) {
-              return response.json();
-            } else {
-              console.error("Erreur");
-            }
-          })
-          .then((data) => {
-            const imageURLInput = document.getElementById("imageURL");
-            imageURLInput.value = data.fileUrl;
-          })
-          .catch((error) => {
-            console.error("Erreur");
-          });
-      };
+      </select>
+    </div>
+    <div>
+      <label for="description">Description :</label>
+      <textarea id="description" name="description" rows="4" required></textarea>
+    </div>
+    <div>
+      <label for="imageURL"></label>
+      <input type="hidden" id="imageURL" name="imageURL" />
+    </div>
+    <div class="input-img">
+      Selectionner une image :
+      <input type="file" name="file" multiple="multiple" id="file-upload" />
+    </div>
+    <button class="button-style" type="submit">Ajouter</button>
+  </form>
+  <a href="/games" class="button-list">Liste des jeux</a>
+  <a href="/api/logout" class="button-logout">Déconnexion</a>
 
-      uploadingBtn.addEventListener("change", handleChange);
-    </script>
-  </body>
+  <script>
+
+    // JavaScript pour gérer le menu burger
+    document.getElementById("menu-icon").addEventListener("click", function () {
+      const menuItems = document.getElementById("menu-items");
+      this.classList.toggle("open"); // Ajout ou suppression de la classe "open" sur le menu-icon
+      menuItems.style.display = menuItems.style.display === "block" ? "none" : "block"; // Afficher ou masquer les liens du menu
+    });
+
+
+    let uploadingBtn = document.getElementById("file-upload");
+    const handleChange = () => {
+      let form = new FormData();
+      form.append("file", uploadingBtn.files[0]);
+      fetch("/api/upload", {
+        method: "POST",
+        body: form,
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            console.error("Erreur");
+          }
+        })
+        .then((data) => {
+          const imageURLInput = document.getElementById("imageURL");
+          imageURLInput.value = data.fileUrl;
+        })
+        .catch((error) => {
+          console.error("Erreur");
+        });
+    };
+
+    uploadingBtn.addEventListener("change", handleChange);
+  </script>
+</body>
+
 </html>
