@@ -5,7 +5,6 @@ export const categories = [
   'famille',
   'party game',
   'enfant',
-  'coopératif',
   'deck-building',
   'cartes',
   'roll&write',
