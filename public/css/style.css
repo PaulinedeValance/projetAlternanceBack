@@ -91,12 +91,12 @@ input {
   color: white;
   font-size: 1.2rem;
   padding: 0.7rem 0.9rem;
-  /* padding: 10px 20px; */
   border-radius: 5px;
   text-decoration: none;
   position: fixed;
   top: 25px;
   left: 25px;
+  z-index: 1;
 }
 
 .button-add:hover {
@@ -310,7 +310,7 @@ hr {
 /* Styles pour le menu burger */
 .menu-icon {
   margin: 20px auto;
-  width: 30px; 
+  width: 30px;
   height: 20px;
   cursor: pointer;
   position: relative;
@@ -335,7 +335,7 @@ hr {
 }
 
 .menu-icon span:last-child {
-  top: 16px; 
+  top: 16px;
 }
 
 .menu-items {
@@ -359,7 +359,7 @@ hr {
 /* Styles pour afficher le menu burger sur les écrans mobiles */
 @media (max-width: 978px) {
   .menu-icon {
-    display: block; 
+    display: block;
   }
 
   /* Styles pour le menu burger lorsqu'il est ouvert */
@@ -377,7 +377,7 @@ hr {
     transform: rotate(-45deg);
   }
 
-  .menu-icon.open + .menu-items {
+  .menu-icon.open+.menu-items {
     display: block;
   }
 }
@@ -391,7 +391,7 @@ hr {
   }
 
   .form-group {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
   }
 
   input[type="text"],
@@ -411,6 +411,75 @@ hr {
 
   .menu-burger {
     display: block;
-    
+
+  }
+
+
+  /* Styles pour les écrans mobiles */
+  @media screen and (max-width: 768px) {
+
+    #search-form {
+      order: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px auto;
+      max-width: 300px;
+      font-size: 15px;
+    }
+
+
+    .button-search {
+      margin-left: 5px;
+      font-size: 16px;
+    }
+
+    #searchInput {
+      font-size: 16px;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-top: 45px;
+
+    }
+
+    #search-form {
+      margin-bottom: 20px;
+
+    }
+
+    .button-add {
+      font-size: 1rem; /* Réduisez la taille de la police */
+      padding: 0.5rem 0.7rem; /* Réduorderisez la marge interne */
+      position: absolute;
+    }
+
+
+    .styled-table {
+      width: 100%;
+    }
+
+    .styled-table thead {
+      display: none;
+    }
+
+    .styled-table td {
+      padding: 10px;
+
+      text-align: left;
+
+    }
+
+    .styled-table tbody tr {
+      border-bottom: 1px solid #dddddd;
+      margin-bottom: 10px;
+
+    }
+
+    .styled-table td {
+      font-size: 18px;
+
+    }
   }
 }
