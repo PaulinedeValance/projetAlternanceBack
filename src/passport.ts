@@ -8,9 +8,15 @@ passport.use(
   new LocalStrategy(async function (username, password, done) {
     try {
       // Recherche de l'utilisateur dans la bdd
-      const user = await User.findOne({
-        username: username,
-      })
+
+      let user
+      // Vérification si "username" est un e-mail valide
+      if (username.includes('@')) {
+        user = await User.findOne({ email: username })
+      } else {
+        // Si ce n'est pas un e-mail, recherchez par nom d'utilisateur
+        user = await User.findOne({ username: username })
+      }
 
       // Si l'utilisateur n'existe pas, renvoie une erreur
       if (!user) {

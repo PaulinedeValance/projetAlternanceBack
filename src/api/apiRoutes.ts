@@ -64,18 +64,20 @@ router.post(
   })
 )
 
-// Route qui gère la connexion du USER
-router.post('/login/user', usersController.login)
+// Route qui gère l'authentification du USER
 
-// Route pour l'authentification des utilisateurs normaux avec PASSPORT --- échec pour le moment
-// router.post(
-//   '/login/user',
-//   passport.authenticate('local', {
-//     successRedirect: '/dashboard', // Rediriger vers le tableau de bord de l'utilisateur
-//     failureRedirect: '/login/user', // Rediriger vers la page de connexion en cas d'échec
-//     failureFlash: true,
-//   })
-// )
+router.post(
+  '/login/user',
+  passport.authenticate('local', {
+    failureMessage: true,
+  }),
+  (req, res) => {
+    console.log('infos passée:', req.user)
+    const { _id, username, email } = req.user as any
+
+    res.status(200).json({ message: 'Connexion réussie', user: { _id, username, email } })
+  }
+)
 
 // Route qui gère la déconnexion de l'admin
 router.get('/logout', logoutController.logout)
