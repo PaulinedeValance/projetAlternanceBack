@@ -1,4 +1,4 @@
-//import mongoose from 'mongoose'
+import { ObjectId } from 'mongodb'
 
 export interface Game {
   //_id: mongoose.Types.ObjectId
@@ -16,4 +16,16 @@ export interface User {
   email: string
   password: string
   role: string
+}
+
+declare global {
+  namespace Express {
+    interface User {
+      _id: ObjectId
+      username: string
+      email: string
+      password: string
+      role: string
+    }
+  }
 }

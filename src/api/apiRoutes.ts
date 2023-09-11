@@ -72,7 +72,7 @@ router.post(
     failureMessage: true,
   }),
   (req, res) => {
-    console.log('infos passée:', req.user)
+    //console.log('infos passée:', req.user)
     const { _id, username, email } = req.user as any
 
     res.status(200).json({ message: 'Connexion réussie', user: { _id, username, email } })
@@ -98,23 +98,6 @@ router.get('/users/:userId', usersController.getUserById)
 
 // Route pour ajouter un user
 router.post('/users', usersController.addUser)
-
-// router.get('/userdata/:userId', async (req, res) => {
-//   const userId = req.params.userId // Récupérez l'ID de l'utilisateur depuis les paramètres de l'URL
-
-//   try {
-//     const userData = await User.findById(userId).select(['username', 'email', 'id']) // Récupérez les données de l'utilisateur par son ID
-
-//     if (!userData) {
-//       return res.status(404).json({ message: 'Utilisateur non trouvé' })
-//     }
-
-//     res.json(userData) // Renvoyez les données de l'utilisateur au format JSON
-//   } catch (error) {
-//     console.error(error)
-//     res.status(500).json({ message: "Erreur lors de la récupération des informations de l'utilisateur" })
-//   }
-// })
 
 router.get('/userdata', async (req, res) => {
   const userId = req.session.userId
