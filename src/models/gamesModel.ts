@@ -21,7 +21,7 @@ const gameSchema = new mongoose.Schema(
       required: false,
     },
     nbJoueurs: {
-      type: Number,
+      type: mongoose.Schema.Types.Mixed, // nbJoueurs peut stocker des nombres et des strings
       required: false,
     },
     dureePartie: {
