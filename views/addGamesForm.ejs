@@ -19,7 +19,7 @@
     <li><a href="/games">Liste des jeux</a></li>
     <li><a href="/api/logout">Déconnexion</a></li>
   </ul>
-  <form method="post" action="/api/games" class="form-style">
+  <form method="post" action="/api/games" class="form-style form-style-add-games">
     <div>
       <label for="nom">Nom du jeu :</label>
       <input type="text" id="nom" name="nom" required />
@@ -67,7 +67,7 @@
       <input type="hidden" id="imageURL" name="imageURL" />
     </div>
     <div class="input-img">
-      Selectionner une image :
+      Séléctionner une image :
       <input type="file" name="file" multiple="multiple" id="file-upload" />
     </div>
     <button class="button-style" type="submit">Ajouter</button>
@@ -77,13 +77,12 @@
 
   <script>
 
-    // JavaScript pour gérer le menu burger
+    // Gestion du menu burger
     document.getElementById("menu-icon").addEventListener("click", function () {
       const menuItems = document.getElementById("menu-items");
       this.classList.toggle("open"); // Ajout ou suppression de la classe "open" sur le menu-icon
       menuItems.style.display = menuItems.style.display === "block" ? "none" : "block"; // Afficher ou masquer les liens du menu
     });
-
 
     let uploadingBtn = document.getElementById("file-upload");
     const handleChange = () => {
@@ -110,13 +109,6 @@
     };
 
     uploadingBtn.addEventListener("change", handleChange);
-
-  //   setTimeout(function() {
-  //   let successMessage = document.querySelector('.success-message');
-  //   if (successMessage) {
-  //     successMessage.style.display = 'none';
-  //   }
-  // }, 5000);
   </script>
 </body>
 

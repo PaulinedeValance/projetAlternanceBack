@@ -21,10 +21,11 @@ const port = process.env.PORT
 
 // Définir le dossier public comme répertoire pour les fichiers statiques
 app.use(serveStatic('public'))
-//app.use(cors());
 
 app.use(
   cors({
+    // origin: 'https://la-ruche-ludique.web.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     origin: 'http://localhost:5173',
     credentials: true,
   })
@@ -76,6 +77,3 @@ app.get('/', (req: any, res: any) => {
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`)
 })
-// function cookieParser(): any {
-//   throw new Error('Function not implemented.')
-// }
