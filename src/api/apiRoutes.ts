@@ -17,8 +17,9 @@ const upload = multer({ dest: 'uploads/' })
 ////////////
 
 // Route pour récupérer tous les jeux
-router.get('/games', async (req, res) => {
-  const games = await Game.find().select(['nom', 'imageURL'])
+router.get('/games', passport.session(), async (req, res) => {
+  console.log(req.session.userId)
+  const games = await Game.find().select(['nom', 'imageURL', 'nbJoueurs', 'dureePartie', 'categorie'])
   return res.json(games)
 })
 
