@@ -31,7 +31,6 @@ export async function getUserCollection(req: Request, res: Response) {
   try {
     // Je récupère la collection de jeux du user en utilisant le userId
     const userCollection = await UserGamesCollection.findOne({ userId }).populate('games')
-    //console.log('collection user', userCollection)
 
     if (!userCollection) {
       return res.status(404).json({ message: 'collection pas trouvé' })
@@ -39,11 +38,8 @@ export async function getUserCollection(req: Request, res: Response) {
 
     // Obtenez les détails complets des jeux en utilisant leurs IDs
     const gameIds = userCollection.games.map((game: any) => game._id)
-    //console.log('jeux:', gameIds)
 
     const games = await Game.find({ _id: { $in: gameIds } })
-
-    //console.log(games)
 
     res.status(200).json({ games })
   } catch (error) {
@@ -56,19 +52,14 @@ export async function removeFromCollection(req: Request, res: Response) {
   // const userId = req.params.userId
   // const gameId = req.params.gameId
   const { userId, gameId } = req.params
-  console.log(userId)
-  console.log(gameId)
 
   try {
-    console.log('1')
     // Je retire le jeu de la ludothèque du user avec $pull
     const userCollection = await UserGamesCollection.findOneAndUpdate(
       { userId },
       { $pull: { games: gameId } },
       { new: true }
     )
-
-    console.log('ludothèque du user:', userCollection)
 
     if (!userCollection) {
       return res.status(404).json({ message: 'Collection introuvable' })
