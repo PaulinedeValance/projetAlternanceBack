@@ -38,11 +38,8 @@ export async function getUserWishlist(req: Request, res: Response) {
 
     // Obtenez les détails complets des jeux en utilisant leurs IDs
     const gameIds = userWishlist.games.map((game: any) => game._id)
-    //console.log('jeux:', gameIds)
 
     const games = await Game.find({ _id: { $in: gameIds } })
-
-    //console.log(games)
 
     res.status(200).json({ games })
   } catch (error) {

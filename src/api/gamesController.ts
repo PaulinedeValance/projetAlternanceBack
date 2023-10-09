@@ -71,7 +71,6 @@ export const searchGames = async (req: Request, res: Response) => {
 }
 
 export function uploadImages(req: Request, res: Response) {
-  console.log(req)
   // Vérification si req.file existe et est défini
   if (req.file) {
     // Accéder au fichier téléchargé via req.file

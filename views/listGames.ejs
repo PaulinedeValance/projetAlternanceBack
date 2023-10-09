@@ -136,13 +136,11 @@
 
   editBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
-      console.log("Bouton cliqué")
       jeuId = event.currentTarget.dataset.id;
       const jeuNom = event.currentTarget.dataset.nom;
       const jeuEditeur = event.currentTarget.dataset.editeur;
       const jeuCategorie = event.currentTarget.dataset.categorie;
-      //console.log(jeuId, jeuNom, jeuEditeur, jeuCategorie);
-
+     
       // Ouvrir la modale
       editModal.showModal();
       document.body.classList.add("modal-open");
@@ -182,8 +180,7 @@
     const nom = editGameName.value;
     const editeur = editGamePublisher.value;
     const categorie = editGameCategory.value;
-    //console.log(jeuId, editedGameName, editedGamePublisher, editedGameCategory);
-
+  
     // Envoi des données modifiées au serveur
     fetch("/api/game/" + jeuId, {
       method: "PUT",
@@ -201,8 +198,7 @@
           // Fermer la modale
           closeEditModal();
 
-          location.reload();
-          console.log("test"); // Recharger la page pour afficher les modifications
+          location.reload(); // Recharger la page pour afficher les modifications
         } else {
           console.log("Erreur lors de la sauvegarde des modifications");
         }
