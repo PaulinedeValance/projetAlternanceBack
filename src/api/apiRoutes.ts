@@ -8,6 +8,7 @@ import userGamesCollectionController from '../controllers/userGamesCollectionCon
 import userGamesWishlistController from '../controllers/userGamesWishlistController'
 import logoutController from './logoutController'
 import User from '../models/usersModel'
+import { log } from 'console'
 
 const router = express.Router()
 const upload = multer({ dest: 'uploads/' })
@@ -18,7 +19,6 @@ const upload = multer({ dest: 'uploads/' })
 
 // Route pour récupérer tous les jeux
 router.get('/games', passport.session(), async (req, res) => {
-  console.log(req.session.userId)
   const games = await Game.find().select(['nom', 'imageURL', 'nbJoueurs', 'dureePartie', 'categorie'])
   return res.json(games)
 })
@@ -39,7 +39,6 @@ router.post('/games', async (req: Request, res: Response) => {
 })
 
 // Route pour modifier un jeu dans la BDD
-
 router.put('/game/:idGame', async (req: Request, res: Response) => {
   await editGame(req.body, req.params.idGame)
   return res.json()
@@ -66,14 +65,12 @@ router.post(
 )
 
 // Route qui gère l'authentification du USER
-
 router.post(
   '/login/user',
   passport.authenticate('local', {
     failureMessage: true,
   }),
   (req, res) => {
-    //console.log('infos passée:', req.user)
     const { _id, username, email } = req.user as any
 
     res.status(200).json({ message: 'Connexion réussie', user: { _id, username, email } })
@@ -81,7 +78,24 @@ router.post(
 )
 
 // Route qui gère la déconnexion de l'admin
-router.get('/logout', logoutController.logout)
+router.get('/logout', (req, res) => {
+  req.logout(err => {
+    if (err) {
+      console.error('Erreur lors de la déconnexion', err)
+      res.status(500).json({ message: 'Erreur lors de la déconnexion' })
+    } else {
+      req.session.destroy(err => {
+        if (err) {
+          console.error('Erreur lors de la destruction de la session', err)
+          res.status(500).json({ message: 'Erreur lors de la déconnexion' })
+        } else {
+          // Je redirige vers la page de login
+          res.redirect('/login/admin')
+        }
+      })
+    }
+  })
+})
 
 ////////////
 /// MEDIA ///
