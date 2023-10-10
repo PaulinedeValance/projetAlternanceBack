@@ -5,22 +5,16 @@ import * as bcrypt from 'bcrypt'
 import mongoose from 'mongoose'
 
 passport.use(
-  new LocalStrategy(async function (username, password, done) {
+  new LocalStrategy(async function (usernameOrEmail, password, done) {
     try {
-      // Recherche de l'utilisateur dans la bdd
-
-      let user
-      // Vérification si "username" est un e-mail valide
-      if (username.includes('@')) {
-        user = await User.findOne({ email: username })
-      } else {
-        // Si ce n'est pas un e-mail, recherchez par nom d'utilisateur
-        user = await User.findOne({ username: username })
-      }
+      // Recherche de l'utilisateur dans la bdd en utilisant email ou username
+      const user = await User.findOne({
+        $or: [{ email: usernameOrEmail }, { username: usernameOrEmail }],
+      })
 
       // Si l'utilisateur n'existe pas, renvoie une erreur
       if (!user) {
-        return done(null, false, { message: "Nom d'utilisateur incorrect" })
+        return done(null, false, { message: "Nom d'utilisateur ou email incorrect" })
       }
 
       // Comparaison du mot de passe entré dans le formulaire avec le mot de passe haché stocké dans la base de données
