@@ -49,8 +49,6 @@ export async function getUserCollection(req: Request, res: Response) {
 }
 
 export async function removeFromCollection(req: Request, res: Response) {
-  // const userId = req.params.userId
-  // const gameId = req.params.gameId
   const { userId, gameId } = req.params
 
   try {

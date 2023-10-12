@@ -19,7 +19,7 @@ const app = express()
 // Définition du port d'écoute en utilisant une variable d'environnement
 const port = process.env.PORT
 
-// Définir le dossier public comme répertoire pour les fichiers statiques
+// Définition du dossier public comme répertoire pour les fichiers statiques
 app.use(serveStatic('public'))
 
 app.use(
@@ -70,7 +70,7 @@ app.set('view engine', 'ejs')
 app.use(methodOverride('_method'))
 // Création d'un route
 app.get('/', (req: any, res: any) => {
-  res.send('Hello la famille')
+  res.send('La ruche Ludique')
 })
 
 // Lancement de mon serveur sur le port 5000

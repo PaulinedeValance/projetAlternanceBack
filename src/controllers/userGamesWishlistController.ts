@@ -3,8 +3,6 @@ import { Request, Response } from 'express'
 import Game from '../models/gamesModel'
 
 export async function addToWishlist(req: Request, res: Response) {
-  // const userId = req.body.userId // ID de l'utilisateur connecté
-  // const gameId = req.body.gameId // ID du jeu à ajouter dans la ludothèque du User
   const { userId, gameId } = req.body
 
   try {
