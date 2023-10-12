@@ -6,9 +6,7 @@ import passport from 'passport'
 import usersController from '../controllers/usersController'
 import userGamesCollectionController from '../controllers/userGamesCollectionController'
 import userGamesWishlistController from '../controllers/userGamesWishlistController'
-import logoutController from './logoutController'
 import User from '../models/usersModel'
-import { log } from 'console'
 
 const router = express.Router()
 const upload = multer({ dest: 'uploads/' })
@@ -23,6 +21,7 @@ router.get('/games', passport.session(), async (req, res) => {
   return res.json(games)
 })
 
+// Route pour récupèrer un jeu grâce à l'ID
 router.get('/games/:id', async (req, res) => {
   const games = await Game.find({ _id: req.params.id })
   return res.json(games[0])
@@ -114,6 +113,7 @@ router.get('/users/:userId', usersController.getUserById)
 // Route pour ajouter un user
 router.post('/users', usersController.addUser)
 
+// Route pour récupérer les données du user qui est authentifié
 router.get('/userdata', async (req, res) => {
   const userId = req.session.userId
   console.log('test :', userId)
