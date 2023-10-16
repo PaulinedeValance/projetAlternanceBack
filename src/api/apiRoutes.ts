@@ -116,7 +116,6 @@ router.post('/users', usersController.addUser)
 // Route pour récupérer les données du user qui est authentifié
 router.get('/userdata', async (req, res) => {
   const userId = req.session.userId
-  console.log('test :', userId)
 
   if (!userId) {
     return res.status(401).json({ message: 'Utilisateur non authentifié' })
