@@ -15,8 +15,7 @@ export const addUser = async (req: Request, res: Response) => {
 
     if (existingUser) {
       // Si l'utilisateur existe déjà dans la base de données
-      console.log("L'utilisateur existe déjà !")
-      // res.redirect("/signup");
+      return res.status(400).json({ message: "L'utilisateur existe déjà !" })
     } else {
       // Si le user n'existe pas encore dans la base de données
       // Hachage de son mot de passe en BDD
@@ -24,9 +23,7 @@ export const addUser = async (req: Request, res: Response) => {
       newUser.password = hashedPassword
 
       await newUser.save()
-      //res.send(200);
       res.sendStatus(200)
-      console.log("L'utilisateur a été ajouté !")
     }
   } catch (err) {
     console.error(err)
