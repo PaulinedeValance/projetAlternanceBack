@@ -4,9 +4,10 @@ import { Request, Response } from 'express'
 import { Game } from '../types'
 
 /**
- * Ajoute un jeu dans la base de données
+ * Ajoute un jeu dans la BDD
+ * Vérificaiton de si le jeu existe déja, si non, ajout dans la BDD
  * @param gameObject
- * @returns
+ * @returns {Promise<Boolean>} un booléen
  */
 export const addGame = async (gameObject: Game): Promise<Boolean> => {
   const newGame = new GameModel(gameObject)
@@ -50,26 +51,7 @@ export const editGame = async (
   await GameModel.findByIdAndUpdate(gameId, gameObject)
 }
 
-// Rechercher un jeu
-export const searchGames = async (req: Request, res: Response) => {
-  // const searchQuery = req.query.query
-  // console.log(searchQuery)
-  // try {
-  //   const games = await GameModel.find({
-  //     $or: [
-  //       { nom: { $regex: searchQuery, $options: 'i' } }, // Recherche par nom (insensible à la casse)
-  //       { editeur: { $regex: searchQuery, $options: 'i' } }, // Recherche par éditeur
-  //     ],
-  //   })
-  //   res.json(games)
-  // } catch (error) {
-  //   console.error(error)
-  //   res.status(500).json({
-  //     error: "Une erreur s'est produite lors de la recherche des jeux.",
-  //   })
-  // }
-}
-
+// Gestion du téléchargement et de l'envoie d'une image vers S3
 export function uploadImages(req: Request, res: Response) {
   // Vérification si req.file existe et est défini
   if (req.file) {
@@ -94,4 +76,4 @@ export function uploadImages(req: Request, res: Response) {
   }
 }
 
-export default { deleteGame, searchGames, editGame }
+export default { deleteGame, editGame }
