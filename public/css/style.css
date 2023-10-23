@@ -16,12 +16,20 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 2rem auto;
-  padding: 2rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   max-width: 500px;
+}
+
+.form-style-login {
+  padding: 7rem;
+  margin: 5rem auto;
+}
+
+.form-style-add-games {
+  margin: 2rem auto;
+  padding: 2rem;
 }
 
 div {
@@ -44,6 +52,15 @@ input {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   font-family: 'Bellota Text', cursive;
 }
+
+.form-style-login input {
+  font-size: 1.7rem;
+}
+
+.form-style-login label {
+  font-size: 1.9rem;
+}
+
 
 .button-style {
   margin-top: 1rem;
@@ -74,7 +91,6 @@ input {
   color: white;
   font-size: 1.2rem;
   padding: 0.7rem 0.9rem;
-  /* padding: 10px 20px; */
   border-radius: 5px;
   text-decoration: none;
   position: fixed;
@@ -93,7 +109,7 @@ input {
   padding: 0.7rem 0.9rem;
   border-radius: 5px;
   text-decoration: none;
-  position: fixed;
+  position: absolute;
   top: 25px;
   left: 25px;
   z-index: 1;
@@ -108,7 +124,6 @@ input {
   color: white;
   font-size: 1.2rem;
   padding: 0.7rem 0.9rem;
-  /* padding: 10px 20px; */
   border-radius: 5px;
   text-decoration: none;
   position: fixed;
@@ -126,8 +141,11 @@ input {
   text-decoration: none;
   text-align: center;
   border: none;
-  background-color: white;
   cursor: pointer;
+}
+
+tr:nth-child(odd) .button-delete {
+  background-color: #dddddd00;
 }
 
 .button-delete:hover {
@@ -139,9 +157,12 @@ input {
   text-decoration: none;
   text-align: center;
   border: none;
-  background-color: white;
   cursor: pointer;
   color: #044890;
+}
+
+tr:nth-child(odd) .button-edit {
+  background-color: #dddddd00;
 }
 
 .button-edit:hover {
@@ -164,19 +185,16 @@ input {
   background-color: #2b333a;
 }
 
+small {
+  margin-top: 7px;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.forgot-pwd {
-  text-decoration: none;
-  color: darkblue;
-  font-style: italic;
-  padding-top: 15px;
-  font-size: 15px;
-}
 
 .liste-jeux {
   font-size: 1.4rem;
@@ -346,7 +364,7 @@ hr {
 }
 
 .menu-items li {
-  margin: 10px 0;
+  margin: 20px 0;
   text-align: center;
 }
 
@@ -356,13 +374,14 @@ hr {
   font-size: 18px;
 }
 
-/* Styles pour afficher le menu burger sur les écrans mobiles */
+
+/* Style pour afficher le menu burger sur les écrans mobiles */
 @media (max-width: 978px) {
   .menu-icon {
     display: block;
   }
 
-  /* Styles pour le menu burger lorsqu'il est ouvert */
+  /* Style pour le menu burger lorsqu'il est ouvert */
   .menu-icon.open span:first-child {
     top: 8px;
     transform: rotate(45deg);
@@ -382,7 +401,31 @@ hr {
   }
 }
 
-/* Styles pour les mobiles */
+/* TEESSSSSSSSSST */
+
+@media only screen and (max-width: 768px) {
+  table {
+    width: 100%;
+    margin: 0 auto;
+    /* Centre le tableau horizontalement */
+  }
+
+  th,
+  td {
+    text-align: center;
+    /* Centre le texte dans les cellules */
+    display: block;
+  }
+
+  th {
+    text-align: center;
+    /* Centre le texte dans les en-têtes de colonnes */
+  }
+
+
+}
+
+/* Style pour les mobiles */
 @media screen and (max-width: 978px) {
 
   .form-style {
@@ -394,7 +437,6 @@ hr {
     margin-bottom: 10px;
   }
 
-  input[type="text"],
   input[type="number"],
   textarea {
     width: 100%;
@@ -415,7 +457,7 @@ hr {
   }
 
 
-  /* Styles pour les écrans mobiles */
+  /* Style pour les écrans mobiles */
   @media screen and (max-width: 768px) {
 
     #search-form {
@@ -439,8 +481,8 @@ hr {
     }
 
     h1 {
-      font-size: 22px;
-      margin-top: 45px;
+      font-size: 25px;
+      margin-top: 75px;
 
     }
 
@@ -450,8 +492,8 @@ hr {
     }
 
     .button-add {
-      font-size: 1rem; /* Réduisez la taille de la police */
-      padding: 0.5rem 0.7rem; /* Réduorderisez la marge interne */
+      font-size: 1.2rem;
+      padding: 0.5rem 0.7rem;
       position: absolute;
     }
 
@@ -466,8 +508,8 @@ hr {
 
     .styled-table td {
       padding: 10px;
-
-      text-align: left;
+      text-align: center;
+      font-size: 1.4rem;
 
     }
 
@@ -476,10 +518,59 @@ hr {
       margin-bottom: 10px;
 
     }
+  }
+}
 
-    .styled-table td {
-      font-size: 18px;
 
-    }
+@media only screen and (max-width: 1025px) {
+  .menu-icon {
+    width: 40px;
+    /* Augmente la largeur du menu burger */
+    height: 30px;
+    /* Augmente la hauteur du menu burger */
+  }
+
+  .menu-icon span {
+    height: 3px;
+    /* Augmente la hauteur des barres du menu burger */
+    top: 0;
+    /* Ajuste la position de la première barre */
+  }
+
+  .menu-icon span:nth-child(2) {
+    top: 12px;
+    /* Ajuste la position de la deuxième barre */
+  }
+
+  .menu-icon span:last-child {
+    top: 24px;
+    /* Ajuste la position de la troisième barre */
+  }
+
+  .menu-items li a {
+    font-size: 1.6rem;
+  }
+
+  .button-style {
+    font-size: 1.6rem;
+  }
+
+  form label,
+  select,
+  textarea {
+    font-size: 1.6rem;
+  }
+
+  .input-img {
+    font-size: 1.6rem;
+  }
+
+}
+
+/* BUG ? */
+@media screen and (min-width: 1200px) and (max-width: 1824px) {
+  .styled-table th,
+  .styled-table td {
+    font-size: 27px; 
   }
 }
