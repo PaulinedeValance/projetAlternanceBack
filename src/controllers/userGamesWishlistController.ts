@@ -3,7 +3,8 @@ import { Request, Response } from 'express'
 import Game from '../models/gamesModel'
 
 export async function addToWishlist(req: Request, res: Response) {
-  const { userId, gameId } = req.body
+  const userId = req.body.userId // ID de l'utilisateur connecté
+  const gameId = req.body.gameId // ID du jeu à ajouter dans la ludothèque du User
 
   try {
     // J'effectue une mise à jour ou une insertion dans la collection UserGamesWishlist dans ma BDD
@@ -34,7 +35,7 @@ export async function getUserWishlist(req: Request, res: Response) {
       return res.status(404).json({ message: 'wishlist pas trouvé' })
     }
 
-    // Obtenez les détails complets des jeux en utilisant leurs IDs
+    // J'obtiens les détails complets des jeux en utilisant leurs IDs
     const gameIds = userWishlist.games.map((game: any) => game._id)
 
     const games = await Game.find({ _id: { $in: gameIds } })

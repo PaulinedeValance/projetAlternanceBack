@@ -3,9 +3,8 @@ import { Request, Response } from 'express'
 import Game from '../models/gamesModel'
 
 export async function addToCollection(req: Request, res: Response) {
-  // const userId = req.body.userId // ID de l'utilisateur connecté
-  // const gameId = req.body.gameId // ID du jeu à ajouter dans la ludothèque du User
-  const { userId, gameId } = req.body
+  const userId = req.body.userId // ID de l'utilisateur connecté
+  const gameId = req.body.gameId // ID du jeu à ajouter dans la ludothèque du User
 
   try {
     // J'effectue une mise à jour ou une insertion dans la collection UserGamesCollection dans ma BDD
@@ -36,7 +35,7 @@ export async function getUserCollection(req: Request, res: Response) {
       return res.status(404).json({ message: 'collection pas trouvé' })
     }
 
-    // Obtenez les détails complets des jeux en utilisant leurs IDs
+    // J'obtiens les détails complets des jeux en utilisant leurs IDs
     const gameIds = userCollection.games.map((game: any) => game._id)
 
     const games = await Game.find({ _id: { $in: gameIds } })
@@ -49,7 +48,8 @@ export async function getUserCollection(req: Request, res: Response) {
 }
 
 export async function removeFromCollection(req: Request, res: Response) {
-  const { userId, gameId } = req.params
+  const userId = req.params.userId
+  const gameId = req.params.gameId
 
   try {
     // Je retire le jeu de la ludothèque du user avec $pull

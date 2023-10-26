@@ -401,25 +401,20 @@ hr {
   }
 }
 
-/* TEESSSSSSSSSST */
-
 @media only screen and (max-width: 768px) {
   table {
     width: 100%;
     margin: 0 auto;
-    /* Centre le tableau horizontalement */
   }
 
   th,
   td {
     text-align: center;
-    /* Centre le texte dans les cellules */
     display: block;
   }
 
   th {
     text-align: center;
-    /* Centre le texte dans les en-têtes de colonnes */
   }
 
 
@@ -456,8 +451,6 @@ hr {
 
   }
 
-
-  /* Style pour les écrans mobiles */
   @media screen and (max-width: 768px) {
 
     #search-form {
@@ -525,26 +518,20 @@ hr {
 @media only screen and (max-width: 1025px) {
   .menu-icon {
     width: 40px;
-    /* Augmente la largeur du menu burger */
     height: 30px;
-    /* Augmente la hauteur du menu burger */
   }
 
   .menu-icon span {
     height: 3px;
-    /* Augmente la hauteur des barres du menu burger */
     top: 0;
-    /* Ajuste la position de la première barre */
   }
 
   .menu-icon span:nth-child(2) {
     top: 12px;
-    /* Ajuste la position de la deuxième barre */
   }
 
   .menu-icon span:last-child {
     top: 24px;
-    /* Ajuste la position de la troisième barre */
   }
 
   .menu-items li a {
@@ -567,7 +554,6 @@ hr {
 
 }
 
-/* BUG ? */
 @media screen and (min-width: 1200px) and (max-width: 1824px) {
   .styled-table th,
   .styled-table td {

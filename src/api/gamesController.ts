@@ -27,6 +27,18 @@ export const addGame = async (gameObject: Game): Promise<Boolean> => {
 }
 
 /**
+ * Modifie un jeu de la base de données
+ * @param gameObject un objet contenant un jeu (nom, categorie...)
+ * @param gameId l'id d'un jeu
+ */
+export const editGame = async (
+  gameObject: { nom: string; categorie: string; editeur: string },
+  gameId: string
+) => {
+  await GameModel.findByIdAndUpdate(gameId, gameObject)
+}
+
+/**
  * Supprime un jeu de la base de données
  * @param gameId
  */
@@ -37,18 +49,6 @@ export const deleteGame = async (gameId: string) => {
     console.error('error suppression')
     throw err
   }
-}
-
-/**
- * Modifie un jeu de la base de données
- * @param gameObject un objet contenant un jeu (nom, categorie...)
- * @param gameId l'id d'un jeu
- */
-export const editGame = async (
-  gameObject: { nom: string; categorie: string; editeur: string },
-  gameId: string
-) => {
-  await GameModel.findByIdAndUpdate(gameId, gameObject)
 }
 
 // Gestion du téléchargement et de l'envoie d'une image vers S3

@@ -3,7 +3,7 @@ const requireAdmin = (req: any, res: any, next: any) => {
   if (req.isAuthenticated() && req.user.role === 'admin') {
     return next() // Autoriser l'accès à la route suivante
   } else {
-    res.redirect('/login/admin') // Sinon rediriger vers la page de connexion si l'utilisateur n'est pas authentifié ou n'a pas le rôle d'admin
+    res.redirect('/login/admin') // Sinon on redirige vers la page de connexion si l'utilisateur n'est pas authentifié ou n'a pas le rôle d'admin
   }
 }
 

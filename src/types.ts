@@ -1,7 +1,6 @@
 import { ObjectId } from 'mongodb'
 
 export interface Game {
-  //_id: mongoose.Types.ObjectId
   nom: string
   editeur: string
   nbJoueurs: number

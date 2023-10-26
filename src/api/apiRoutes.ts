@@ -15,6 +15,16 @@ const upload = multer({ dest: 'uploads/' })
 /// GAME ///
 ////////////
 
+// Route pour ajouter un jeu dans la BDD
+router.post('/games', async (req: Request, res: Response) => {
+  const isNewGame = await addGame(req.body)
+  if (isNewGame) {
+    res.redirect('/game/add')
+  } else {
+    res.redirect('/games')
+  }
+})
+
 // Route pour récupérer tous les jeux
 router.get('/games', passport.session(), async (req, res) => {
   const games = await Game.find().select(['nom', 'imageURL', 'nbJoueurs', 'dureePartie', 'categorie'])
@@ -25,16 +35,6 @@ router.get('/games', passport.session(), async (req, res) => {
 router.get('/games/:id', async (req, res) => {
   const games = await Game.find({ _id: req.params.id })
   return res.json(games[0])
-})
-
-// Route pour ajouter un jeu dans la BDD
-router.post('/games', async (req: Request, res: Response) => {
-  const isNewGame = await addGame(req.body)
-  if (isNewGame) {
-    res.redirect('/game/add')
-  } else {
-    res.redirect('/games')
-  }
 })
 
 // Route pour modifier un jeu dans la BDD
