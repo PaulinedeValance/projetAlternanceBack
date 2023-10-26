@@ -48,9 +48,8 @@ export async function getUserWishlist(req: Request, res: Response) {
 }
 
 export async function removeFromWishlist(req: Request, res: Response) {
-  // const userId = req.params.userId
-  // const gameId = req.params.gameId
-  const { userId, gameId } = req.params
+  const userId = req.params.userId
+  const gameId = req.params.gameId
 
   try {
     // Je retire le jeu de la ludothèque du user avec $pull
